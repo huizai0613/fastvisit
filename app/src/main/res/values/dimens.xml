@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--字体大小-->
+    <dimen name="font_most_big">20dip</dimen>
+    <dimen name="font_big">16dip</dimen>
+    <dimen name="font_default">14dip</dimen>
+    <dimen name="font_smaill">12dip</dimen>
+    <!--间距大小-->
+    <dimen name="padding_mostbig">20dip</dimen>
+    <dimen name="padding_big">15dip</dimen>
+    <dimen name="padding_default">10dip</dimen>
+    <dimen name="padding_smaill">5dip</dimen>
+
+
+    <dimen name="login_register_edittext_height">45dip</dimen>
+    <dimen name="bottombar_herght">45dp</dimen>
+</resources>

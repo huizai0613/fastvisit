@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="10dip">
+
+        <LinearLayout
+            android:id="@+id/ll_playcard"
+
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/shequ_navi_img_style_home"
+                android:src="@mipmap/icon_nav_01"/>
+
+            <TextView
+                style="@style/shequ_navi_text_style_home"
+                android:text="考勤打卡"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_newpoint"
+
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_wuye_icon"
+                    style="@style/shequ_navi_img_style_home"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/icon_nav_02"/>
+
+            </FrameLayout>
+
+            <TextView
+                style="@style/shequ_navi_text_style_home"
+                android:text="新开网点"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_pointsearch"
+
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_news_icon"
+                style="@style/shequ_navi_img_style_home"
+                android:src="@mipmap/icon_nav_03"/>
+
+            <TextView
+                style="@style/shequ_navi_text_style_home"
+                android:text="网点搜索"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_pointmanage"
+
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_club_icon"
+                style="@style/shequ_navi_img_style_home"
+                android:src="@mipmap/icon_nav_04"/>
+
+            <TextView
+                style="@style/shequ_navi_text_style_home"
+                android:text="巡店管理"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip">
+
+        <LinearLayout
+            android:id="@+id/ll_push"
+
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_talk_icon"
+                style="@style/shequ_navi_img_style_home"
+                android:src="@mipmap/icon_nav_05"/>
+
+            <TextView
+                style="@style/shequ_navi_text_style_home"
+                android:text="品牌推广"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_worknotes"
+
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_seckill_icon"
+                style="@style/shequ_navi_img_style_home"
+                android:src="@mipmap/icon_nav_06"/>
+
+            <TextView
+                style="@style/shequ_navi_text_style_home"
+                android:text="工作日记"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_public"
+
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_credit_icon"
+                style="@style/shequ_navi_img_style_home"
+                android:src="@mipmap/icon_nav_07"/>
+
+            <TextView
+                style="@style/shequ_navi_text_style_home"
+                android:text="通知广播"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_more"
+
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_privilege_icon"
+                style="@style/shequ_navi_img_style_home"
+                android:src="@mipmap/icon_nav_08"/>
+
+            <TextView
+                style="@style/shequ_navi_text_style_home"
+                android:text="更多服务"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

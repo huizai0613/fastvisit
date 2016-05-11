@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/titlebar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/titlebar_height"
+    android:background="@color/titlebar_color">
+
+
+    <ImageView
+        android:id="@+id/titlebar_left_iv"
+        android:layout_width="@dimen/titlebar_but_w"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="30dp"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/titlebar_left_tv"
+        android:layout_width="@dimen/titlebar_but_w"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="@dimen/font_default"
+        android:textColor="@color/titlebat_l_color"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/titlebar_m_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textSize="@dimen/font_big"
+        android:textColor="@color/titlebat_m_color"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/titlebar_m_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+
+    <TextView
+        android:id="@+id/titlebar_right_tv"
+        android:layout_width="@dimen/titlebar_but_w"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:textSize="@dimen/font_default"
+        android:textColor="@color/titlebat_r_color"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/titlebar_right_iv"
+        android:layout_width="@dimen/titlebar_but_w"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:visibility="gone"/>
+</RelativeLayout>

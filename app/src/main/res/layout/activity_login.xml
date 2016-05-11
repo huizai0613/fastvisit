@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_bg_color">
+
+    <cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout
+        android:id="@+id/sizechangeL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/padding_default"
+        android:layout_marginRight="@dimen/padding_default"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:src="@mipmap/icon_logo"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_register_edittext_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/padding_mostbig"
+            android:layout_marginRight="@dimen/padding_mostbig"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icons_user"/>
+
+            <EditText
+                android:id="@+id/edt_username"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/login_username_hint"
+                android:textColorHint="@color/hint_text_color"
+                android:textSize="@dimen/font_default"/>
+        </LinearLayout>
+
+        <View
+            style="@style/v_divider"
+            android:layout_height="3px"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_register_edittext_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/padding_mostbig"
+            android:layout_marginRight="@dimen/padding_mostbig"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_pw"/>
+
+            <EditText
+                android:id="@+id/edt_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/login_pwd_hint"
+                android:password="true"
+                android:textColorHint="@color/hint_text_color"
+                android:textSize="@dimen/font_default"/>
+        </LinearLayout>
+
+        <View
+            style="@style/v_divider"
+            android:layout_height="3px"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_register_edittext_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/padding_big"
+            android:layout_marginRight="@dimen/padding_big"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/login_auto"
+                style="@style/from_edit_checkbox"
+                android:layout_width="130dp"
+                android:layout_height="50dip"
+                android:checked="true"
+                android:paddingLeft="5dip"
+                android:text="下次自动登录"
+                android:textColor="@color/gray_most_text"
+                android:textSize="@dimen/font_default"/>
+
+            <TextView
+                android:id="@+id/login_find"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical|right"
+                android:text="找回密码"
+                android:textColor="@color/gray_most_text"
+                android:textSize="@dimen/font_default"/>
+        </RelativeLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/login_but"
+            xmlns:fb="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            fb:fb_borderColor="#ff838b"
+            fb:fb_borderWidth="1dp"
+            fb:fb_defaultColor="@color/but_orange_nomal"
+            fb:fb_focusColor="@color/but_orange_press"
+            fb:fb_text="登  陆"
+            fb:fb_textColor="@color/white"></mehdi.sakout.fancybuttons.FancyButton>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/login_register"
+            xmlns:fb="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            fb:fb_borderColor="#CECECE"
+            fb:fb_borderWidth="1dp"
+            fb:fb_defaultColor="#ffffff"
+            fb:fb_focusColor="#ffffff"
+            fb:fb_text="注  册"
+            fb:fb_textColor="@color/black"></mehdi.sakout.fancybuttons.FancyButton>
+
+    </cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout>
+
+</LinearLayout>

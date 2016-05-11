@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_username_hint">请输入用户名</string>
+    <string name="login_pwd_hint">请输入密码</string>
+    <string name="tag">tag</string>
+    <string name="gravity_left">left</string>
+    <string name="gravity_center">center</string>
+    <string name="gravity_right">right</string>
+</resources>

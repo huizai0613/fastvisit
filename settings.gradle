@@ -1,0 +1,3 @@
+include ':app', ':pickerView', ':ptr-lib'
+project(':pickerView').projectDir = new File('vender/pickerView')
+project(':ptr-lib').projectDir = new File('vender/ptr-lib')

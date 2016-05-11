@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_bg_color"
+              android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="158dp"
+        android:layout_height="25dip"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/icon_guide_logo"/>
+
+    <com.jude.rollviewpager.RollPagerView
+        android:id="@+id/guide_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginTop="40dp"/>
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        xmlns:fb="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/guide_jump"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="40dip"
+        android:layout_marginRight="120dp"
+        fb:fb_borderColor="#ff838b"
+        fb:fb_borderWidth="1dp"
+        fb:fb_defaultColor="#ffffff"
+        fb:fb_focusColor="#ffffff"
+        fb:fb_text="马上体验"
+        fb:fb_textColor="#ff838b"></mehdi.sakout.fancybuttons.FancyButton>
+</LinearLayout>

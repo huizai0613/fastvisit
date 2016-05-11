@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="divider_color">#ddd</color>
+    <color name="bootom_tv_color">#f4f4f4</color>
+    <color name="titlebat_l_color">#ffffff</color>
+    <color name="titlebat_m_color">#ffffff</color>
+    <color name="titlebat_r_color">#ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="titlebar_color">#ffffff</color>
+    <color name="main_bg_color">#ECECEC</color>
+
+    <!--白色按钮-->
+    <color name="but_white_unpress">#ffffff</color>
+    <color name="but_white_press">#c2c2c2</color>
+
+    <!--底部导航栏颜色-->
+    <color name="nav_bottom_bg">#ffffff</color>
+    <color name="nav_bottom_tv_press_bg">#E36600</color>
+    <color name="nav_bottom_tv_bg">#000000</color>
+
+
+    <!--字体颜色-->
+    <color name="main_text">#000000</color>
+    <color name="orange_text">#D35F00</color>
+    <color name="gray_text">#999</color>
+    <color name="gray_most_text">#6b6b6b</color>
+    <color name="blue_text">#077dc8</color>
+    <color name="hint_text_color">#8C8C8C</color>
+    <!--按钮颜色-->
+    <color name="but_orange_nomal">#D35F00</color>
+    <color name="but_orange_press">#975200</color>
+    <color name="but_gray_nomal">#D35F00</color>
+    <color name="but_gray_press">#C4C4C4</color>
+    <color name="but_red_press">#BD0011</color>
+    <color name="but_red_nomal">#F50012</color>
+
+</resources>

@@ -1,0 +1,27 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="shequ_navi_img_style_home">
+        <item name="android:layout_width">45dip</item>
+        <item name="android:layout_height">45dip</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="shequ_navi_text_style_home">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/main_text</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:textSize">@dimen/font_smaill</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="user_home_right_img">
+        <item name="android:layout_width">20dip</item>
+        <item name="android:layout_height">30dip</item>
+        <item name="android:paddingRight">10dip</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:paddingBottom">10dip</item>
+        <item name="android:paddingTop">10dip</item>
+        <item name="android:layout_marginLeft">5dip</item>
+    </style>
+</resources>

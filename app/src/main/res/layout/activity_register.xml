@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:fb="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg_color">
+
+    <cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout
+        android:id="@+id/sizechangeL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/padding_default"
+        android:layout_marginRight="@dimen/padding_default"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/register_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:padding="@dimen/padding_default"
+            android:text="关闭"
+            android:textColor="@color/orange_text"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:src="@mipmap/icon_logo"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_register_edittext_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/padding_mostbig"
+            android:layout_marginRight="@dimen/padding_mostbig"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icons_user"/>
+
+            <EditText
+                android:id="@+id/edt_shopid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请输入经销商ID"
+                android:textColorHint="@color/hint_text_color"
+                android:textSize="@dimen/font_default"/>
+        </LinearLayout>
+
+        <View
+            style="@style/v_divider"
+            android:layout_height="3px"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/padding_mostbig"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_pw"/>
+
+            <EditText
+                android:id="@+id/edt_phone"
+                android:layout_width="200dp"
+                android:layout_height="@dimen/login_register_edittext_height"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请输入您的手机号"
+                android:textColorHint="@color/hint_text_color"
+                android:textSize="@dimen/font_default"/>
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/register_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_smaill"
+                android:layout_marginTop="@dimen/padding_smaill"
+                fb:fb_borderColor="#ff838b"
+                fb:fb_borderWidth="1dp"
+                fb:fb_defaultColor="@color/but_orange_nomal"
+                fb:fb_focusColor="@color/but_orange_press"
+                fb:fb_text="获取验证码"
+                fb:fb_textColor="@color/white"
+                ></mehdi.sakout.fancybuttons.FancyButton>
+
+
+        </LinearLayout>
+
+        <View
+            style="@style/v_divider"
+            android:layout_height="3px"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_register_edittext_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/padding_mostbig"
+            android:layout_marginRight="@dimen/padding_mostbig"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_pw"/>
+
+            <EditText
+                android:id="@+id/edt_code"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请输入验证码"
+                android:password="true"
+                android:textColorHint="@color/hint_text_color"
+                android:textSize="@dimen/font_default"/>
+        </LinearLayout>
+
+        <View
+            style="@style/v_divider"
+            android:layout_height="3px"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_register_edittext_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/padding_big"
+            android:layout_marginRight="@dimen/padding_big"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/register_note_check"
+                style="@style/from_edit_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="50dip"
+                android:checked="true"
+                android:paddingLeft="5dip"
+                android:text="我已阅读并同意"
+                android:textColor="@color/gray_most_text"
+                android:textSize="@dimen/font_default"/>
+
+            <TextView
+                android:id="@+id/register_note"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="@dimen/padding_smaill"
+                android:layout_toRightOf="@id/register_note_check"
+                android:gravity="center_vertical|left"
+                android:text="&#60;&#60;有薪快仿用户服务协议&#62;&#62;"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/font_default"/>
+        </RelativeLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            fb:fb_borderColor="#ff838b"
+            fb:fb_borderWidth="1dp"
+            fb:fb_defaultColor="@color/but_orange_nomal"
+            fb:fb_focusColor="@color/but_orange_press"
+            fb:fb_text="注  册"
+            fb:fb_textColor="@color/white"></mehdi.sakout.fancybuttons.FancyButton>
+    </cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout>
+
+
+</RelativeLayout>
