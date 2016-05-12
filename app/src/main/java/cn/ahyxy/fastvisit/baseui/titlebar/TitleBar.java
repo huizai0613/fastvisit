@@ -93,8 +93,9 @@ public class TitleBar
 
     }
 
-    public void initBackTitle(final BaseActivity activity, String backStr, int backRes)
+    public void initBackTitle(final BaseActivity activity, String title, String backStr, int backRes)
     {
+        setTitlebarMTv(title);
         View.OnClickListener onClickListener = new View.OnClickListener()
         {
             @Override
@@ -105,11 +106,16 @@ public class TitleBar
         };
         if (!StringUtils.isEmpty(backStr)) {
             setTitlebarLeftTv(backStr, onClickListener);
-        } else {
-            if (backRes != 0) {
-                setTitlebarLeftIv(backRes, onClickListener);
-            }
         }
+        if (backRes != 0) {
+            setTitlebarLeftIv(backRes, onClickListener);
+        }
+
+    }
+
+    public void initDefaultBackTitle(final BaseActivity activity, String title)
+    {
+        initBackTitle(activity, title, "返回", R.mipmap.action_bar_back);
     }
 
     public void setTitlebarLeftTv(String butStr, View.OnClickListener listener)

@@ -1,5 +1,8 @@
 package cn.ahyxy.fastvisit.base;
 
+import cn.ahyxy.fastvisit.app.DataManager.UserManager;
+import cn.ahyxy.fastvisit.utils.StringUtils;
+
 /**
  * Created by yexiangyu on 16/3/16.
  */
@@ -7,9 +10,13 @@ package cn.ahyxy.fastvisit.base;
 public class BaseRequestTokenParam extends BaseRequestParam
 {
 
-    public BaseRequestTokenParam()
+
+    public BaseRequestTokenParam(String... url)
     {
-//        if (UserManage.isLogin())
-//            addBodyParameter("token", UserManage.getUserBean().getToken());
+        super(url[0]);
+        String token = UserManager.getUserBean().getToken();
+        if (!StringUtils.isEmpty(token))
+            addBodyParameter("token", token);
+
     }
 }

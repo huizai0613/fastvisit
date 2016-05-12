@@ -1,7 +1,9 @@
 package cn.ahyxy.fastvisit.app.DataManager;
 
+import org.xutils.ex.DbException;
 import org.xutils.x;
 
+import cn.ahyxy.fastvisit.app.AppContext;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.LoginParam;
 import cn.ahyxy.fastvisit.app.bean.UserBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
@@ -26,6 +28,13 @@ public class UserManager
 
     public static UserBean getUserBean()
     {
+        if (userBean == null) {
+            try {
+                userBean = (UserBean) AppContext.getDbmanager().findAll(UserBean.class).get(0);
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+        }
         return userBean;
     }
 }

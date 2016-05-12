@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -17,6 +18,7 @@ import org.xutils.view.annotation.ViewInject;
 import cn.ahyxy.fastvisit.KJConfig;
 import cn.ahyxy.fastvisit.MainActivity;
 import cn.ahyxy.fastvisit.R;
+import cn.ahyxy.fastvisit.app.AppContext;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.app.bean.UserBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
@@ -136,9 +138,15 @@ public class LoginActivity extends BaseActivity
                 UserBean userBean = new UserBean();
                 userBean.parserBean(result);
                 UserManager.setUserBean(userBean);
-                PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.ISAUTOLOGIN, loginAuto.isChecked());
-                PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.USERTOKEN, userBean.getToken());
-                skipActivity(mBaseActivity, MainActivity.class);
+                try {
+                    AppContext.getDbmanager().save(userBean);
+                    PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.ISAUTOLOGIN, loginAuto.isChecked());
+                    PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.USERTOKEN, userBean.getToken());
+                    skipActivity(mBaseActivity, MainActivity.class);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 

@@ -1,38 +1,54 @@
 package cn.ahyxy.fastvisit.app.bean;
 
 import org.json.JSONObject;
+import org.xutils.db.annotation.Column;
+import org.xutils.db.annotation.Table;
 
 import cn.ahyxy.fastvisit.bean.base.BaseBean;
 
 /**
  * Created by yexiangyu on 16/5/12.
  */
+@Table(name = "User")
 public class UserBean extends BaseBean<UserBean>
 {
+    @Column(name = "id", isId = true)
+    private int id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "s_no")
     private String s_no;
+    @Column(name = "name")
     private String name;
+    @Column(name = "tel")
     private String tel;
+    @Column(name = "age")
     private String age;
+    @Column(name = "email")
     private String email;
+    @Column(name = "token")
     private String token;
 
-    private boolean isAutoLogin;
 
+    @Column(name = "d_id")
     private int d_id;
+    @Column(name = "gender")
     private int gender;
+    @Column(name = "status")
     private int status;
+    @Column(name = "createtime")
     private long createtime;
 
-    public boolean isAutoLogin()
+    public int getId()
     {
-        return isAutoLogin;
+        return id;
     }
 
-    public void setIsAutoLogin(boolean isAutoLogin)
+    public void setId(int id)
     {
-        this.isAutoLogin = isAutoLogin;
+        this.id = id;
     }
 
     public String getUsername()
@@ -173,8 +189,6 @@ public class UserBean extends BaseBean<UserBean>
         age = jsonObject.optString("age");
         email = jsonObject.optString("email");
         token = jsonObject.optString("token");
-
-
         return null;
     }
 }

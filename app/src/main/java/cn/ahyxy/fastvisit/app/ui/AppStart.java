@@ -23,7 +23,6 @@ public class AppStart extends BaseActivity
     {
         super.initWidget();
 
-
         new Handler().postDelayed(new Runnable()
         {
             @Override

@@ -16,6 +16,8 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import cn.ahyxy.fastvisit.R;
+import cn.ahyxy.fastvisit.app.ui.PayCardActivity;
+import cn.ahyxy.fastvisit.app.ui.PublicActivity;
 import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
 import cn.ahyxy.fastvisit.baseui.titlebar.TitleBar;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
@@ -104,6 +106,7 @@ public class MainFragment extends LsSimpleHomeFragment
     {
         switch (view.getId()) {
             case R.id.ll_playcard://打卡
+                mActivity.showActivity(mActivity, PayCardActivity.class);
                 break;
             case R.id.ll_newpoint://新开网点
                 break;
@@ -114,12 +117,12 @@ public class MainFragment extends LsSimpleHomeFragment
             case R.id.ll_push://推广
                 break;
             case R.id.ll_public://公告
-//                mActivity.showActivity(mActivity,PublicActivity.class);
+                mActivity.showActivity(mActivity, PublicActivity.class);
                 break;
             case R.id.ll_worknotes://工作日记
                 break;
             case R.id.ll_more://更多
-                ToastUtils.Infotoast(mActivity,"开发升级中......");
+                ToastUtils.Infotoast(mActivity, "开发升级中......");
                 break;
         }
     }

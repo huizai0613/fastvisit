@@ -23,9 +23,9 @@ public abstract class BaseActivity extends SupportActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         mContext = AppContext.getInstance();
-        super.onCreate(savedInstanceState);
         _isVisible = true;
         mBaseActivity = this;
+        super.onCreate(savedInstanceState);
     }
 
     public void animaFinish()

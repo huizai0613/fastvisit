@@ -103,7 +103,7 @@ public abstract class BaseCallBack implements Callback.CommonCallback<String>
         }
         if (emptyLayout != null)
             emptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
-        LogUtil.d(ex.getMessage());
+        LogUtil.d(ex.getMessage() + "");
         onErrorJson(ex, isOnCallback);
     }
 

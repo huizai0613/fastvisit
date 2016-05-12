@@ -3,9 +3,9 @@
     <color name="transparent">#00000000</color>
     <color name="divider_color">#ddd</color>
     <color name="bootom_tv_color">#f4f4f4</color>
-    <color name="titlebat_l_color">#ffffff</color>
-    <color name="titlebat_m_color">#ffffff</color>
-    <color name="titlebat_r_color">#ffffff</color>
+    <color name="titlebat_l_color">#EA6800</color>
+    <color name="titlebat_m_color">#000000</color>
+    <color name="titlebat_r_color">#EA6800</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 

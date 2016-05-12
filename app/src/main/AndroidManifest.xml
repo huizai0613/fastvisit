@@ -48,6 +48,19 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".app.ui.PayCardActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".app.ui.PublicActivity"
+            android:screenOrientation="portrait"/>
+
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="SrKEKBn60d4PNrdvgKDeY9fi"/>
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
+        </service>
     </application>
 
 </manifest>

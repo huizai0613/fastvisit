@@ -3,6 +3,8 @@ package cn.ahyxy.fastvisit.app;
 import android.app.Application;
 import android.graphics.Color;
 
+import com.baidu.mapapi.SDKInitializer;
+
 import org.xutils.DbManager;
 import org.xutils.x;
 
@@ -46,6 +48,7 @@ public class AppContext extends Application
         mContext = this;
         x.Ext.init(this);
         x.Ext.setDebug(true);
+        SDKInitializer.initialize(getApplicationContext());
         daoConfig = new DbManager.DaoConfig()
                 .setDbName("blackskirt.db")
                         // 不设置dbDir时, 默认存储在app的私有目录.
