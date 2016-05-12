@@ -1,6 +1,7 @@
 package cn.ahyxy.fastvisit;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,13 @@ import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
+import cn.ahyxy.fastvisit.app.AppContext;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
 import cn.ahyxy.fastvisit.baseui.LsFragmentTabHost;
 import cn.ahyxy.fastvisit.baseui.uiim.KJActivityStack;
 import cn.ahyxy.fastvisit.weight.MainTab;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 
 
 @ContentView(R.layout.activity_main)

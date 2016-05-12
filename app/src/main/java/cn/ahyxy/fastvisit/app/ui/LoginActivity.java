@@ -3,6 +3,7 @@ package cn.ahyxy.fastvisit.app.ui;
 import android.app.Dialog;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.CheckBox;
@@ -10,17 +11,21 @@ import android.widget.EditText;
 
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
+import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 import cn.ahyxy.fastvisit.R;
+import cn.ahyxy.fastvisit.app.AppContext;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
 import cn.ahyxy.fastvisit.utils.StringUtils;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 import cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
@@ -45,6 +50,7 @@ public class LoginActivity extends BaseActivity
     @Override
     public void initWidget()
     {
+        connect("N0lXy35DVUg0BLKF0Ojeg5C0u0u4TSwbNsjBmzFeTqClph6hBkXdhxkaTDLeYhpU9U81xHIcqBfrow2Lw9Ofsg==");
         super.initWidget();
         controlKeyboardLayout(sizechangeL, login_but);
     }
@@ -174,5 +180,52 @@ public class LoginActivity extends BaseActivity
                 });
     }
 
+
+    /**
+     * 建立与融云服务器的连接
+     *
+     * @param token
+     */
+    private void connect(String token) {
+
+        if (getApplicationInfo().packageName.equals(AppContext.getCurProcessName(getApplicationContext()))) {
+
+            /**
+             * IMKit SDK调用第二步,建立与服务器的连接
+             */
+            RongIM.connect(token, new RongIMClient.ConnectCallback() {
+
+                /**
+                 * Token 错误，在线上环境下主要是因为 Token 已经过期，您需要向 App Server 重新请求一个新的 Token
+                 */
+                @Override
+                public void onTokenIncorrect() {
+
+                    LogUtil.d("--onTokenIncorrect");
+                }
+
+                /**
+                 * 连接融云成功
+                 * @param userid 当前 token
+                 */
+                @Override
+                public void onSuccess(String userid) {
+
+                    LogUtil.d("--onSuccess" + userid);
+//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                    finish();
+                }
+
+                /**
+                 * 连接融云失败
+                 * @param errorCode 错误码，可到官网 查看错误码对应的注释
+                 */
+                @Override
+                public void onError(RongIMClient.ErrorCode errorCode) {
+                    LogUtil.d("--onError" + errorCode);
+                }
+            });
+        }
+    }
 
 }
