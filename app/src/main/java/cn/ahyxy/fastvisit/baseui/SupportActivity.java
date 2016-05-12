@@ -43,7 +43,6 @@ public abstract class SupportActivity extends AppCompatActivity implements
 
     public static final int WHICH_MSG = 0X37210;
 
-    protected Activity mActivity;
     private ThreadDataCallBack callback;
     private KJActivityHandle threadHandle = new KJActivityHandle(this);
 
@@ -178,7 +177,6 @@ public abstract class SupportActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        mActivity = this;
         KJActivityStack.create().addActivity(this);
         KJLoger.state(this.getClass().getName(), "---------onCreat ");
         x.view().inject(this);
@@ -235,7 +233,6 @@ public abstract class SupportActivity extends AppCompatActivity implements
         KJActivityStack.create().finishActivity(this);
         callback = null;
         threadHandle = null;
-        mActivity = null;
     }
 
     /**

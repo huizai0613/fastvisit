@@ -13,7 +13,17 @@ import cn.ahyxy.fastvisit.bean.error.SelfError;
  */
 public abstract class BaseBean<T> implements Serializable
 {
+    protected int id;
 
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
     public static JSONObject checkJson(String jsonStr) throws JSONException, NetRequestException
     {

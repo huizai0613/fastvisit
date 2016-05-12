@@ -79,6 +79,6 @@ public class AppGuide extends BaseActivity
     @Event(value = R.id.guide_jump)
     private void jumpLogin(View view)
     {
-        skipActivity(mActivity, LoginActivity.class);
+        skipActivity(mBaseActivity, LoginActivity.class);
     }
 }

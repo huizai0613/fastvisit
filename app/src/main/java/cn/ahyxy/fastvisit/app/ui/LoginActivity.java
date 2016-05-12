@@ -14,10 +14,14 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import cn.ahyxy.fastvisit.KJConfig;
+import cn.ahyxy.fastvisit.MainActivity;
 import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
+import cn.ahyxy.fastvisit.app.bean.UserBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
+import cn.ahyxy.fastvisit.utils.PreferenceHelper;
 import cn.ahyxy.fastvisit.utils.StringUtils;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 import cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout;
@@ -55,7 +59,6 @@ public class LoginActivity extends BaseActivity
         switch (view.getId()) {
             case R.id.login_but://登陆
                 login();
-//                skipActivity(mActivity, MainActivity.class);
                 break;
             case R.id.login_register://注册
                 dialog = new Dialog(this, R.style.Dialog);
@@ -100,14 +103,12 @@ public class LoginActivity extends BaseActivity
     {
         Bundle bundle = new Bundle();
         bundle.putInt("MODE", mode);
-        showActivity(mActivity, RegisterActivity.class, bundle);
+        showActivity(mBaseActivity, RegisterActivity.class, bundle);
     }
 
     //登陆方法
     private void login()
     {
-        boolean checked = loginAuto.isChecked();
-
         String account = edtUserName.getText().toString();
         String pwd = edtPws.getText().toString();
 
@@ -121,18 +122,23 @@ public class LoginActivity extends BaseActivity
         }
 
         showWaitDialog("登陆中...");
-        UserManager.login(account, pwd, new BaseCallBackJsonObject(mContext)
+        UserManager.login(account, pwd, new BaseCallBackJsonObject(mContext, mBaseActivity)
         {
             @Override
             public void onErrorJson(Throwable ex, boolean isOnCallback)
             {
-
+                PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.USERTOKEN, "");
             }
 
             @Override
             public void onSuccessJsonObject(JSONObject result)
             {
-                result.toString();
+                UserBean userBean = new UserBean();
+                userBean.parserBean(result);
+                UserManager.setUserBean(userBean);
+                PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.ISAUTOLOGIN, loginAuto.isChecked());
+                PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.USERTOKEN, userBean.getToken());
+                skipActivity(mBaseActivity, MainActivity.class);
             }
         });
 

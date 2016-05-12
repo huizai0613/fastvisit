@@ -5,9 +5,11 @@ import android.os.Handler;
 import org.xutils.view.annotation.ContentView;
 
 import cn.ahyxy.fastvisit.KJConfig;
+import cn.ahyxy.fastvisit.MainActivity;
 import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
 import cn.ahyxy.fastvisit.utils.PreferenceHelper;
+import cn.ahyxy.fastvisit.utils.StringUtils;
 
 /**
  * Created by yexiangyu on 16/4/14.
@@ -27,13 +29,16 @@ public class AppStart extends BaseActivity
             @Override
             public void run()
             {
-                boolean isFirst = !PreferenceHelper.readBoolean(mContext, KJConfig.PREFERENCENAME, "isFirst");
-
+                boolean isFirst = !PreferenceHelper.readBoolean(mContext, KJConfig.PREFERENCENAME, KJConfig.ISFRIST);
                 if (isFirst) {
-                    PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, "isFirst", true);
-                    skipActivity(mActivity, AppGuide.class);
+                    PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.ISFRIST, true);
+                    skipActivity(mBaseActivity, AppGuide.class);
                 } else {
-                    skipActivity(mActivity, LoginActivity.class);
+                    if (PreferenceHelper.readBoolean(mContext, KJConfig.PREFERENCENAME, KJConfig.ISAUTOLOGIN) && !StringUtils.isEmpty(PreferenceHelper.readString(mContext, KJConfig.PREFERENCENAME, KJConfig.USERTOKEN))) {
+                        skipActivity(mBaseActivity, MainActivity.class);
+                    } else {
+                        skipActivity(mBaseActivity, LoginActivity.class);
+                    }
                 }
             }
         }, 2000);
