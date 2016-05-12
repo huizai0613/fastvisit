@@ -2,10 +2,12 @@ package cn.ahyxy.fastvisit.base;
 
 import android.content.Context;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
 
+import cn.ahyxy.fastvisit.baseui.BaseActivity;
 import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
 import cn.ahyxy.fastvisit.baseui.list.BaseListActivity;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
@@ -15,11 +17,12 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 /**
  * Created by yexiangyu on 16/3/16.
  */
-public abstract class BaseCallBack implements Callback.CommonCallback<JSONObject>
+public abstract class BaseCallBack implements Callback.CommonCallback<String>
 {
     private final Context context;
     private EmptyLayout emptyLayout;
     private PtrClassicFrameLayout mPtrClassicFrameLayout;
+    private BaseActivity baseActivity;
 
     public BaseCallBack(Context mContext)
     {
@@ -32,6 +35,7 @@ public abstract class BaseCallBack implements Callback.CommonCallback<JSONObject
         this.mPtrClassicFrameLayout = fragment.mPtrClassicFrameLayout;
         this.context = mContext;
     }
+
     public BaseCallBack(Context mContext, EmptyLayout mErrorView)
     {
         this.emptyLayout = mErrorView;
@@ -46,38 +50,57 @@ public abstract class BaseCallBack implements Callback.CommonCallback<JSONObject
         this.context = mContext;
     }
 
-    @Override
-    public void onSuccess(JSONObject result)
+    public BaseCallBack(Context mContext, BaseActivity mBaseActivity)
     {
-        if (emptyLayout != null)
-            emptyLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+        this.context = mContext;
+        baseActivity = mBaseActivity;
+    }
 
-        if (mPtrClassicFrameLayout != null) {
-            mPtrClassicFrameLayout.refreshComplete();
-        }
-        LogUtil.d(result.toString());
-
-        int status = result.optInt("status", 1);
-        if (status != 1) {
-            JSONObject jsonObject = result.optJSONObject("error_response");
-            if (jsonObject != null) {
-                ToastUtils.Errortoast(context, jsonObject.optString("msg"));
+    @Override
+    public void onSuccess(String result)
+    {
+        try {
+            LogUtil.d(result);
+            JSONObject resultJsonObject = new JSONObject(result);
+            if (baseActivity != null) {
+                baseActivity.hideWaitDialog();
             }
-            onError(new Throwable("json status error :status=" + status), false);
-            return;
+            if (emptyLayout != null) {
+                emptyLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+            }
+
+            if (mPtrClassicFrameLayout != null) {
+                mPtrClassicFrameLayout.refreshComplete();
+            }
+
+            int status = resultJsonObject.optInt("status", 1);
+            if (status != 1) {
+                JSONObject jsonObject = resultJsonObject.optJSONObject("error_response");
+                if (jsonObject != null) {
+                    ToastUtils.Errortoast(context, jsonObject.optString("msg"));
+                }
+                onError(new Throwable("json status error :status=" + status), false);
+                return;
+            }
+
+            if (this instanceof OnSuccessJsonArray) {
+                ((OnSuccessJsonArray) this).onSuccessJsonArray(resultJsonObject.optJSONArray("data"));
+            } else if (this instanceof OnSuccessJsonObject) {
+                ((OnSuccessJsonObject) this).onSuccessJsonObject(resultJsonObject.optJSONObject("data"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
-        if (this instanceof OnSuccessJsonArray) {
-            ((OnSuccessJsonArray) this).onSuccessJsonArray(result.optJSONArray("data"));
-        } else if (this instanceof OnSuccessJsonObject) {
-            ((OnSuccessJsonObject) this).onSuccessJsonObject(result.optJSONObject("data"));
-        }
 
     }
 
     @Override
     public void onError(Throwable ex, boolean isOnCallback)
     {
+        if (baseActivity != null) {
+            baseActivity.hideWaitDialog();
+        }
         if (mPtrClassicFrameLayout != null) {
             mPtrClassicFrameLayout.refreshComplete();
         }

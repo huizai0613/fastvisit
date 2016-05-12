@@ -1,6 +1,5 @@
 package cn.ahyxy.fastvisit.baseui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -33,7 +32,7 @@ public abstract class LsSimpleHomeFragment extends SupportFragment implements Ma
     protected ScrollView mContentScrollView;
     private LayoutInflater layoutInflater;
     protected TitleBar mTitleBar;
-    protected Activity mActivity;
+    protected BaseActivity mActivity;
     protected int page;
     protected boolean isRefresh;
     protected int type = 0;
@@ -70,7 +69,7 @@ public abstract class LsSimpleHomeFragment extends SupportFragment implements Ma
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        mActivity = getActivity();
+        mActivity = (BaseActivity) getActivity();
         if (fragmentRootView == null) {
             registerBroadcast();
             return super.onCreateView(inflater, container, savedInstanceState);
@@ -154,7 +153,7 @@ public abstract class LsSimpleHomeFragment extends SupportFragment implements Ma
 
     /***
      * 自动刷新的时间
-     * <p>
+     * <p/>
      * 默认：自动刷新的时间为5分钟
      *
      * @return
@@ -189,7 +188,7 @@ public abstract class LsSimpleHomeFragment extends SupportFragment implements Ma
     {
         page = 0;
         isRefresh = true;
-        if(mErrorView!=null){
+        if (mErrorView != null) {
             mErrorView.setErrorType(EmptyLayout.NETWORK_LOADING);
         }
         getDataFronServer();

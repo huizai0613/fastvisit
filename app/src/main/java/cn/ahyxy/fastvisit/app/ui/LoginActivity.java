@@ -1,19 +1,25 @@
 package cn.ahyxy.fastvisit.app.ui;
 
+import android.app.Dialog;
 import android.graphics.Rect;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
-import cn.ahyxy.fastvisit.MainActivity;
 import cn.ahyxy.fastvisit.R;
+import cn.ahyxy.fastvisit.app.DataManager.UserManager;
+import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
+import cn.ahyxy.fastvisit.utils.StringUtils;
+import cn.ahyxy.fastvisit.utils.ToastUtils;
 import cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout;
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -33,6 +39,7 @@ public class LoginActivity extends BaseActivity
     private CheckBox loginAuto;
     @ViewInject(R.id.login_but)
     private FancyButton login_but;
+    private Dialog dialog;
 
 
     @Override
@@ -47,16 +54,39 @@ public class LoginActivity extends BaseActivity
     {
         switch (view.getId()) {
             case R.id.login_but://登陆
-//                login();
-                skipActivity(mActivity, MainActivity.class);
+                login();
+//                skipActivity(mActivity, MainActivity.class);
                 break;
             case R.id.login_register://注册
-                register();
+                dialog = new Dialog(this, R.style.Dialog);
+                dialog.setContentView(R.layout.registerselect_dialog);
+                dialog.getWindow().getDecorView().findViewById(R.id.one_register).setOnClickListener(this);
+                dialog.getWindow().getDecorView().findViewById(R.id.two_register).setOnClickListener(this);
+                dialog.show();
                 break;
             case R.id.login_find://找回密码
                 findPassWorld();
                 break;
         }
+    }
+
+    @Override
+    public void widgetClick(View v)
+    {
+        super.widgetClick(v);
+
+        switch (v.getId()) {
+            case R.id.one_register:
+                dialog.dismiss();
+                register(RegisterActivity.NOMAL);
+                break;
+            case R.id.two_register:
+                dialog.dismiss();
+                register(RegisterActivity.MANAGER);
+                break;
+        }
+
+
     }
 
     //找回密码
@@ -66,15 +96,45 @@ public class LoginActivity extends BaseActivity
     }
 
     //注册
-    private void register()
+    private void register(int mode)
     {
-        showActivity(mActivity, RegisterActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("MODE", mode);
+        showActivity(mActivity, RegisterActivity.class, bundle);
     }
 
     //登陆方法
     private void login()
     {
         boolean checked = loginAuto.isChecked();
+
+        String account = edtUserName.getText().toString();
+        String pwd = edtPws.getText().toString();
+
+        if (StringUtils.isEmpty(account)) {
+            ToastUtils.Infotoast(mContext, "账号不可为空");
+            return;
+        }
+        if (StringUtils.isEmpty(pwd)) {
+            ToastUtils.Infotoast(mContext, "密码不可为空");
+            return;
+        }
+
+        showWaitDialog("登陆中...");
+        UserManager.login(account, pwd, new BaseCallBackJsonObject(mContext)
+        {
+            @Override
+            public void onErrorJson(Throwable ex, boolean isOnCallback)
+            {
+
+            }
+
+            @Override
+            public void onSuccessJsonObject(JSONObject result)
+            {
+                result.toString();
+            }
+        });
 
     }
 

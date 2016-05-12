@@ -23,6 +23,9 @@ import mehdi.sakout.fancybuttons.FancyButton;
 @ContentView(R.layout.activity_register)
 public class RegisterActivity extends BaseActivity
 {
+    public static final int MANAGER = 0;
+    public static final int NOMAL = 1;
+
     @ViewInject(R.id.sizechangeL)
     private SizeChangeLinearLayout sizechangeL;
     @ViewInject(R.id.edt_shopid)
@@ -37,6 +40,7 @@ public class RegisterActivity extends BaseActivity
     private FancyButton registerBtn;
     @ViewInject(R.id.register_code)
     private FancyButton registerCode;
+    private int mode;
 
 
     @Override
@@ -44,9 +48,20 @@ public class RegisterActivity extends BaseActivity
     {
         super.initWidget();
         registerCode.setTextSize(12);
+
+
+
+
         controlKeyboardLayout(sizechangeL, registerBtn);
     }
 
+    @Override
+    public void initData()
+    {
+        super.initData();
+        mode = getIntent().getIntExtra("MODE", NOMAL);
+
+    }
 
     @Event(value = {R.id.register_btn, R.id.register_note, R.id.register_code, R.id.register_close, R.id.register_note_check})
     private void eventClick(View view)

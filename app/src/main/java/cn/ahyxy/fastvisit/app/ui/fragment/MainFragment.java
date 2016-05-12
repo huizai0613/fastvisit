@@ -114,6 +114,7 @@ public class MainFragment extends LsSimpleHomeFragment
             case R.id.ll_push://推广
                 break;
             case R.id.ll_public://公告
+//                mActivity.showActivity(mActivity,PublicActivity.class);
                 break;
             case R.id.ll_worknotes://工作日记
                 break;

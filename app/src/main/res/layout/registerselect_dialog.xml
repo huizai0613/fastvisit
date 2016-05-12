@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="@dimen/padding_mostbig"
+        android:layout_marginRight="@dimen/padding_mostbig"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_default"
+        android:paddingRight="@dimen/padding_default">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="请选择注册类型"
+            android:textColor="#5D94FD"
+            android:textSize="@dimen/font_default"/>
+
+        <RelativeLayout
+            android:id="@+id/one_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_wite_select"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_default"
+                android:paddingTop="@dimen/padding_default"
+                android:text="业务员注册"
+                android:textColor="@color/main_text"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text=">"
+                />
+
+
+        </RelativeLayout>
+
+        <View
+            style="@style/v_divider"
+
+            />
+
+        <RelativeLayout
+            android:id="@+id/two_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_wite_select"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_default"
+                android:paddingTop="@dimen/padding_default"
+                android:text="管理者注册"
+                android:textColor="@color/main_text"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text=">"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>
