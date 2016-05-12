@@ -12,15 +12,20 @@ import android.widget.EditText;
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.common.util.LogUtil;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import cn.ahyxy.fastvisit.KJConfig;
+import cn.ahyxy.fastvisit.MainActivity;
 import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.app.AppContext;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
+import cn.ahyxy.fastvisit.app.bean.UserBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
+import cn.ahyxy.fastvisit.utils.PreferenceHelper;
 import cn.ahyxy.fastvisit.utils.StringUtils;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 import cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout;
@@ -50,7 +55,6 @@ public class LoginActivity extends BaseActivity
     @Override
     public void initWidget()
     {
-        connect("N0lXy35DVUg0BLKF0Ojeg5C0u0u4TSwbNsjBmzFeTqClph6hBkXdhxkaTDLeYhpU9U81xHIcqBfrow2Lw9Ofsg==");
         super.initWidget();
         controlKeyboardLayout(sizechangeL, login_but);
     }
@@ -61,7 +65,6 @@ public class LoginActivity extends BaseActivity
         switch (view.getId()) {
             case R.id.login_but://登陆
                 login();
-//                skipActivity(mActivity, MainActivity.class);
                 break;
             case R.id.login_register://注册
                 dialog = new Dialog(this, R.style.Dialog);
@@ -106,14 +109,12 @@ public class LoginActivity extends BaseActivity
     {
         Bundle bundle = new Bundle();
         bundle.putInt("MODE", mode);
-        showActivity(mActivity, RegisterActivity.class, bundle);
+        showActivity(mBaseActivity, RegisterActivity.class, bundle);
     }
 
     //登陆方法
     private void login()
     {
-        boolean checked = loginAuto.isChecked();
-
         String account = edtUserName.getText().toString();
         String pwd = edtPws.getText().toString();
 
@@ -127,18 +128,29 @@ public class LoginActivity extends BaseActivity
         }
 
         showWaitDialog("登陆中...");
-        UserManager.login(account, pwd, new BaseCallBackJsonObject(mContext)
+        UserManager.login(account, pwd, new BaseCallBackJsonObject(mContext, mBaseActivity)
         {
             @Override
             public void onErrorJson(Throwable ex, boolean isOnCallback)
             {
-
+                PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.USERTOKEN, "");
             }
 
             @Override
             public void onSuccessJsonObject(JSONObject result)
             {
-                result.toString();
+                UserBean userBean = new UserBean();
+                userBean.parserBean(result);
+                UserManager.setUserBean(userBean);
+                try {
+                    AppContext.getDbmanager().save(userBean);
+                    PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.ISAUTOLOGIN, loginAuto.isChecked());
+                    PreferenceHelper.write(mContext, KJConfig.PREFERENCENAME, KJConfig.USERTOKEN, userBean.getToken());
+                    skipActivity(mBaseActivity, MainActivity.class);
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -179,53 +191,4 @@ public class LoginActivity extends BaseActivity
                     }
                 });
     }
-
-
-    /**
-     * 建立与融云服务器的连接
-     *
-     * @param token
-     */
-    private void connect(String token) {
-
-        if (getApplicationInfo().packageName.equals(AppContext.getCurProcessName(getApplicationContext()))) {
-
-            /**
-             * IMKit SDK调用第二步,建立与服务器的连接
-             */
-            RongIM.connect(token, new RongIMClient.ConnectCallback() {
-
-                /**
-                 * Token 错误，在线上环境下主要是因为 Token 已经过期，您需要向 App Server 重新请求一个新的 Token
-                 */
-                @Override
-                public void onTokenIncorrect() {
-
-                    LogUtil.d("--onTokenIncorrect");
-                }
-
-                /**
-                 * 连接融云成功
-                 * @param userid 当前 token
-                 */
-                @Override
-                public void onSuccess(String userid) {
-
-                    LogUtil.d("--onSuccess" + userid);
-//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                    finish();
-                }
-
-                /**
-                 * 连接融云失败
-                 * @param errorCode 错误码，可到官网 查看错误码对应的注释
-                 */
-                @Override
-                public void onError(RongIMClient.ErrorCode errorCode) {
-                    LogUtil.d("--onError" + errorCode);
-                }
-            });
-        }
-    }
-
 }

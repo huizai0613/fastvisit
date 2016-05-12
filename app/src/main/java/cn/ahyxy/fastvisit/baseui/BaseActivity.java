@@ -17,13 +17,15 @@ public abstract class BaseActivity extends SupportActivity
     private WaitDialog _waitDialog;
 
     protected Context mContext;
+    protected BaseActivity mBaseActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         mContext = AppContext.getInstance();
-        super.onCreate(savedInstanceState);
         _isVisible = true;
+        mBaseActivity = this;
+        super.onCreate(savedInstanceState);
     }
 
     public void animaFinish()
@@ -65,5 +67,12 @@ public abstract class BaseActivity extends SupportActivity
     public void onBackPressed()
     {
         animaFinish();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        mBaseActivity = null;
     }
 }

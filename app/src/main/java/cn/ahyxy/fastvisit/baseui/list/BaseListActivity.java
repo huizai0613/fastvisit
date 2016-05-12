@@ -65,7 +65,7 @@ public abstract class BaseListActivity<T extends BaseBean> extends TitleBarActiv
     {
         super.initWidget();
         intitListView();
-        baseCallBackJsonObject = new BaseCallBackJsonObject(mActivity, this)
+        baseCallBackJsonObject = new BaseCallBackJsonObject(mContext, this)
         {
             @Override
             public void onErrorJson(Throwable ex, boolean isOnCallback)
@@ -123,7 +123,7 @@ public abstract class BaseListActivity<T extends BaseBean> extends TitleBarActiv
                 }
             }
         };
-        baseCallBackJsonArray = new BaseCallBackJsonArray(mActivity, this)
+        baseCallBackJsonArray = new BaseCallBackJsonArray(mContext, this)
         {
             @Override
             public void onErrorJson(Throwable ex, boolean isOnCallback)

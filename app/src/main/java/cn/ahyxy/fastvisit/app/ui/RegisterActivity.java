@@ -48,10 +48,6 @@ public class RegisterActivity extends BaseActivity
     {
         super.initWidget();
         registerCode.setTextSize(12);
-
-
-
-
         controlKeyboardLayout(sizechangeL, registerBtn);
     }
 

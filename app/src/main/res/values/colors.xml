@@ -3,9 +3,9 @@
     <color name="transparent">#00000000</color>
     <color name="divider_color">#ddd</color>
     <color name="bootom_tv_color">#f4f4f4</color>
-    <color name="titlebat_l_color">#ffffff</color>
-    <color name="titlebat_m_color">#ffffff</color>
-    <color name="titlebat_r_color">#ffffff</color>
+    <color name="titlebat_l_color">#EA6800</color>
+    <color name="titlebat_m_color">#000000</color>
+    <color name="titlebat_r_color">#EA6800</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 
@@ -36,5 +36,13 @@
     <color name="but_gray_press">#C4C4C4</color>
     <color name="but_red_press">#BD0011</color>
     <color name="but_red_nomal">#F50012</color>
+
+    <color name="group_list_black_textview">#353535</color>
+    <color name="de_title_bg">#0195ff</color>
+    <color name="rc_text_color_secondary_inverse">@android:color/white</color>
+    <color name="rc_text_color_select_btn_disable">#97d9b3</color>
+    <color name="group_list_liner">#e4e4e4</color>
+    <color name="main_backgroud_search">#f7f7f7</color>
+    <color name="black_textview">#575757</color>
 
 </resources>

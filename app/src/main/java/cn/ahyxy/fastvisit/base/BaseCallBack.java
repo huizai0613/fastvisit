@@ -73,12 +73,9 @@ public abstract class BaseCallBack implements Callback.CommonCallback<String>
                 mPtrClassicFrameLayout.refreshComplete();
             }
 
-            int status = resultJsonObject.optInt("status", 1);
-            if (status != 1) {
-                JSONObject jsonObject = resultJsonObject.optJSONObject("error_response");
-                if (jsonObject != null) {
-                    ToastUtils.Errortoast(context, jsonObject.optString("msg"));
-                }
+            int status = resultJsonObject.optInt("code", 0);
+            if (status != 0) {
+                ToastUtils.Errortoast(context, resultJsonObject.optString("message"));
                 onError(new Throwable("json status error :status=" + status), false);
                 return;
             }
@@ -106,7 +103,7 @@ public abstract class BaseCallBack implements Callback.CommonCallback<String>
         }
         if (emptyLayout != null)
             emptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
-        LogUtil.d(ex.getMessage());
+        LogUtil.d(ex.getMessage() + "");
         onErrorJson(ex, isOnCallback);
     }
 

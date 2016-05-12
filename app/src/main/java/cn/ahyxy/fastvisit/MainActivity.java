@@ -10,10 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.xutils.common.util.DensityUtil;
+import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import cn.ahyxy.fastvisit.app.AppContext;
+import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
 import cn.ahyxy.fastvisit.baseui.LsFragmentTabHost;
 import cn.ahyxy.fastvisit.baseui.uiim.KJActivityStack;
@@ -53,6 +55,7 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     public void initWidget()
     {
         super.initWidget();
+        connect(UserManager.getUserBean().getToken());
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         mTabHost.setOnTabChangedListener(this);
         if (android.os.Build.VERSION.SDK_INT > 10) {
@@ -124,5 +127,51 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     public void onBackPressed()
     {
         shutDown();
+    }    /**
+ * 建立与融云服务器的连接
+ *
+ * @param token
+ */
+private void connect(String token) {
+//    token = "paLzacUpQpDDYGmNmCjLiP/pFkUL4qvorKCHCwQDbPz+Uv87iOovqoFDS8X6AfbcsO2xZOebnzJTsb0FtMVg/g==";
+    LogUtil.d("connect token:" + token);
+    if (getApplicationInfo().packageName.equals(AppContext.getCurProcessName(getApplicationContext()))) {
+
+        /**
+         * IMKit SDK调用第二步,建立与服务器的连接
+         */
+        RongIM.connect(token, new RongIMClient.ConnectCallback() {
+
+            /**
+             * Token 错误，在线上环境下主要是因为 Token 已经过期，您需要向 App Server 重新请求一个新的 Token
+             */
+            @Override
+            public void onTokenIncorrect() {
+
+                LogUtil.d("--onTokenIncorrect");
+            }
+
+            /**
+             * 连接融云成功
+             * @param userid 当前 token
+             */
+            @Override
+            public void onSuccess(String userid) {
+
+                LogUtil.d("--onSuccess" + userid);
+//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                    finish();
+            }
+
+            /**
+             * 连接融云失败
+             * @param errorCode 错误码，可到官网 查看错误码对应的注释
+             */
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+                LogUtil.d("--onError" + errorCode);
+            }
+        });
     }
+}
 }

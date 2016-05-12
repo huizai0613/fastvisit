@@ -14,7 +14,6 @@ import cn.ahyxy.fastvisit.bean.error.SelfError;
 public abstract class BaseBean<T> implements Serializable
 {
 
-
     public static JSONObject checkJson(String jsonStr) throws JSONException, NetRequestException
     {
         JSONObject jsonObject = new JSONObject(jsonStr);

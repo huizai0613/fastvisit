@@ -40,6 +40,9 @@ public final class KJConfig
     public static final String ONLY_WIFI = "only_wifi";
 
     public static final String PREFERENCENAME = "PREFERENCENAME";
-
+    //SharedPreferencesKEY
+    public static final String ISFRIST = "ISFRIST";
+    public static final String ISAUTOLOGIN = "ISAUTOLOGIN";
+    public static final String USERTOKEN = "USERTOKEN";
 
 }
