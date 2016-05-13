@@ -19,7 +19,6 @@ import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.app.ui.PayCardActivity;
 import cn.ahyxy.fastvisit.app.ui.PublicActivity;
 import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
-import cn.ahyxy.fastvisit.baseui.titlebar.TitleBar;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 
 /**
@@ -43,11 +42,7 @@ public class MainFragment extends LsSimpleHomeFragment
     protected void initWidget(View parentView)
     {
         super.initWidget(parentView);
-        TitleBar titleBar = TitleBar.getInstance(parentView);
-        titleBar.setTitlebarMTv("有薪快仿", "#000000");
-        titleBar.setTitlebarRightIv(R.mipmap.icon_r, null);
-        titleBar.setTitlebarLeftTv("合肥", "#EA6800", R.mipmap.icon_l, null);
-        titleBar.getTitlebarLeftTv().setPadding(20, 0, 20, 0);
+
 
         topVP.setPlayDelay(3000);
         topVP.setAnimationDurtion(500);

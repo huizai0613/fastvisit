@@ -40,6 +40,11 @@ public class TitleBar
         initView();
     }
 
+    public View getmRoomView()
+    {
+        return mRoomView;
+    }
+
     public TextView getTitlebarLeftTv()
     {
         return titlebarLeftTv;
@@ -91,6 +96,15 @@ public class TitleBar
             titlebarLeftIv = (ImageView) mRoomView.findViewById(R.id.titlebar_left_iv);
         }
 
+    }
+
+    public void rest(){
+        titlebarLeftTv.setVisibility(View.GONE);
+        titlebarRightTv.setVisibility(View.GONE);
+        titlebarMTv.setVisibility(View.GONE);
+        titlebarMIv.setVisibility(View.GONE);
+        titlebarRightIv.setVisibility(View.GONE);
+        titlebarLeftIv.setVisibility(View.GONE);
     }
 
     public void initBackTitle(final BaseActivity activity, String title, String backStr, int backRes)

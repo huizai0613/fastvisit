@@ -4,6 +4,10 @@
               android:background="@color/main_bg_color"
               android:orientation="vertical">
 
+    <include
+        layout="@layout/main_titlebar"
+        />
+
     <FrameLayout
         android:id="@+id/realtabcontent"
         android:layout_width="match_parent"

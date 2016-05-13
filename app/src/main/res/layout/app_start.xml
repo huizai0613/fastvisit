@@ -25,7 +25,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/icon"
-            android:text="有    薪    快   仿"
+            android:text="有    薪    快   访"
             android:textColor="@color/black"
             android:textSize="@dimen/font_most_big"/>
 

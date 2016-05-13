@@ -29,9 +29,7 @@ import cn.ahyxy.fastvisit.app.ui.friend.widget.SwitchGroup;
 import cn.ahyxy.fastvisit.app.ui.friend.widget.SwitchItemView;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
 import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
-import cn.ahyxy.fastvisit.baseui.titlebar.TitleBar;
 import io.rong.imkit.RongIM;
-import io.rong.imlib.model.Conversation;
 
 public class FriendListFragment extends LsSimpleHomeFragment implements SwitchGroup.ItemHander, OnClickListener, TextWatcher, FriendListAdapter.OnFilterFinished, OnItemClickListener {
 
@@ -55,11 +53,6 @@ public class FriendListFragment extends LsSimpleHomeFragment implements SwitchGr
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         super.initWidget(parentView);
-        TitleBar titleBar = TitleBar.getInstance(parentView);
-        titleBar.setTitlebarMTv("有薪快仿", "#000000");
-        titleBar.setTitlebarRightIv(R.mipmap.icon_r, null);
-        titleBar.setTitlebarLeftTv("合肥", "#EA6800", R.mipmap.icon_l, null);
-        titleBar.getTitlebarLeftTv().setPadding(20, 0, 20, 0);
 
         mListView.setPinnedHeaderView(LayoutInflater.from(this.getActivity()).inflate(R.layout.de_item_friend_index,
                 mListView, false));

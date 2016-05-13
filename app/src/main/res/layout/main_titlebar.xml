@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/titlebar_left_tv"
-        android:layout_width="@dimen/titlebar_but_w"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/titlebar_left_iv"
         android:gravity="center_vertical|left"
@@ -58,7 +58,7 @@
         android:layout_width="@dimen/titlebar_but_w"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="10dp"
         android:visibility="gone"/>
 </RelativeLayout>

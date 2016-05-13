@@ -10,7 +10,6 @@ import org.xutils.view.annotation.ViewInject;
 
 import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
-import cn.ahyxy.fastvisit.baseui.titlebar.TitleBar;
 
 /**
  * Created by yexiangyu on 16/5/9.
@@ -54,8 +53,6 @@ public class MyFragment extends LsSimpleHomeFragment
     protected void initWidget(View parentView)
     {
         super.initWidget(parentView);
-        TitleBar titleBar = TitleBar.getInstance(parentView);
-        titleBar.setTitlebarMTv("我的", "#000000");
     }
 
 

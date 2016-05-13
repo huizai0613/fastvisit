@@ -1,7 +1,6 @@
 package cn.ahyxy.fastvisit;
 
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,7 @@ import cn.ahyxy.fastvisit.app.AppContext;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
 import cn.ahyxy.fastvisit.baseui.LsFragmentTabHost;
+import cn.ahyxy.fastvisit.baseui.titlebar.TitleBar;
 import cn.ahyxy.fastvisit.baseui.uiim.KJActivityStack;
 import cn.ahyxy.fastvisit.weight.MainTab;
 import io.rong.imkit.RongIM;
@@ -31,11 +31,22 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     @ViewInject(android.R.id.tabhost)
     private LsFragmentTabHost mTabHost;
     private int position;
+    private TitleBar instance;
 
     @Override
     public void onTabChanged(String tabId)
     {
-
+        instance.rest();
+        if (MainTab.values()[0].getResName().equals(tabId)) {
+            instance.setTitlebarMTv("有信", "#000000");
+        } else if (MainTab.values()[2].getResName().equals(tabId) || MainTab.values()[1].getResName().equals(tabId)) {
+            instance.setTitlebarMTv("有薪快访", "#000000");
+            instance.setTitlebarRightIv(R.mipmap.icon_r, null);
+            instance.setTitlebarLeftTv("合肥", "#EA6800", R.mipmap.icon_l, null);
+            instance.getTitlebarLeftTv().setPadding(20, 0, 20, 0);
+        } else {
+            instance.setTitlebarMTv("我的", "#000000");
+        }
     }
 
     public interface OnTabReselectedListener
@@ -47,7 +58,7 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     public void initData()
     {
         super.initData();
-        position = getIntent().getIntExtra("POSITION", 0);
+        position = getIntent().getIntExtra("POSITION", 2);
 
     }
 
@@ -55,6 +66,9 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     public void initWidget()
     {
         super.initWidget();
+        instance = TitleBar.getInstance(mBaseActivity);
+//        instance.getmRoomView().setVisibility(View.GONE);
+
         connect(UserManager.getUserBean().getToken());
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         mTabHost.setOnTabChangedListener(this);
@@ -127,51 +141,58 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     public void onBackPressed()
     {
         shutDown();
-    }    /**
- * 建立与融云服务器的连接
- *
- * @param token
- */
-private void connect(String token) {
+    }
+
+    /**
+     * 建立与融云服务器的连接
+     *
+     * @param token
+     */
+    private void connect(String token)
+    {
 //    token = "paLzacUpQpDDYGmNmCjLiP/pFkUL4qvorKCHCwQDbPz+Uv87iOovqoFDS8X6AfbcsO2xZOebnzJTsb0FtMVg/g==";
-    LogUtil.d("connect token:" + token);
-    if (getApplicationInfo().packageName.equals(AppContext.getCurProcessName(getApplicationContext()))) {
-
-        /**
-         * IMKit SDK调用第二步,建立与服务器的连接
-         */
-        RongIM.connect(token, new RongIMClient.ConnectCallback() {
+        LogUtil.d("connect token:" + token);
+        if (getApplicationInfo().packageName.equals(AppContext.getCurProcessName(getApplicationContext()))) {
 
             /**
-             * Token 错误，在线上环境下主要是因为 Token 已经过期，您需要向 App Server 重新请求一个新的 Token
+             * IMKit SDK调用第二步,建立与服务器的连接
              */
-            @Override
-            public void onTokenIncorrect() {
+            RongIM.connect(token, new RongIMClient.ConnectCallback()
+            {
 
-                LogUtil.d("--onTokenIncorrect");
-            }
+                /**
+                 * Token 错误，在线上环境下主要是因为 Token 已经过期，您需要向 App Server 重新请求一个新的 Token
+                 */
+                @Override
+                public void onTokenIncorrect()
+                {
 
-            /**
-             * 连接融云成功
-             * @param userid 当前 token
-             */
-            @Override
-            public void onSuccess(String userid) {
+                    LogUtil.d("--onTokenIncorrect");
+                }
 
-                LogUtil.d("--onSuccess" + userid);
+                /**
+                 * 连接融云成功
+                 * @param userid 当前 token
+                 */
+                @Override
+                public void onSuccess(String userid)
+                {
+
+                    LogUtil.d("--onSuccess" + userid);
 //                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
 //                    finish();
-            }
+                }
 
-            /**
-             * 连接融云失败
-             * @param errorCode 错误码，可到官网 查看错误码对应的注释
-             */
-            @Override
-            public void onError(RongIMClient.ErrorCode errorCode) {
-                LogUtil.d("--onError" + errorCode);
-            }
-        });
+                /**
+                 * 连接融云失败
+                 * @param errorCode 错误码，可到官网 查看错误码对应的注释
+                 */
+                @Override
+                public void onError(RongIMClient.ErrorCode errorCode)
+                {
+                    LogUtil.d("--onError" + errorCode);
+                }
+            });
+        }
     }
-}
 }
