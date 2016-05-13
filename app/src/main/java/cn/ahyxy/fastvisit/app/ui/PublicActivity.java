@@ -47,8 +47,8 @@ public class PublicActivity extends BaseActivity
             @Override
             public void onSuccessJsonObject(JSONObject result)
             {
-                result.toString();
-
+                String notice = result.optString("notice");
+                publicContent.setText(notice);
             }
         });
 
