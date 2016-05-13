@@ -66,8 +66,16 @@
             android:name=".app.ui.PublicActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".app.ui.ConversationActivity"
-            android:screenOrientation="portrait">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="IIeoEErSbvHmGTMT9HNIwUzw1x0Fc6dd" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"></service>
+
+        <activity android:name=".app.ui.ConversationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
