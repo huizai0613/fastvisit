@@ -1,15 +1,14 @@
 package cn.ahyxy.fastvisit.app.DataManager.parameter;
 
-import cn.ahyxy.fastvisit.base.BaseRequestParam;
+import cn.ahyxy.fastvisit.base.BaseRequestTokenParam;
 
 /**
  * Created by yexiangyu on 16/5/12.
  */
-public class AllUserParam extends BaseRequestParam {
-    public AllUserParam(String dId, String id, String token) {
+public class AllUserParam extends BaseRequestTokenParam {
+    public AllUserParam(String dId, String id) {
         super("index/getalluser");
         addBodyParameter("d_id", dId);
         addBodyParameter("id", id);
-        addBodyParameter("token", token);
     }
 }

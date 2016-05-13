@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,14 +96,14 @@ public class FriendListAdapter extends PinnedHeaderAdapter<Friend> implements Fi
 
         name.setText(friend.getNickname());
 
-        Resource res = new Resource(friend.getPortrait());
-
-        photo.setResource(res);
-
+        String portrait = friend.getPortrait();
+        if (!TextUtils.isEmpty(portrait)) {
+            Resource res = new Resource(friend.getPortrait());
+            photo.setResource(res);
+        }
         photo.setTag(position);
 
         holder.friend = friend;
-
     }
 
     @Override

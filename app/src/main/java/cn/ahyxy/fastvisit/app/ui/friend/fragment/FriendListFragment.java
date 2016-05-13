@@ -12,7 +12,9 @@ import android.widget.EditText;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.DbManager;
 import org.xutils.common.util.LogUtil;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import cn.ahyxy.fastvisit.R;
+import cn.ahyxy.fastvisit.app.AppContext;
 import cn.ahyxy.fastvisit.app.DataManager.AllUserManager;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.app.ui.friend.adapter.FriendListAdapter;
@@ -32,8 +35,6 @@ import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
 import io.rong.imkit.RongIM;
 
 public class FriendListFragment extends LsSimpleHomeFragment implements SwitchGroup.ItemHander, OnClickListener, TextWatcher, FriendListAdapter.OnFilterFinished, OnItemClickListener {
-
-    private static final String TAG = FriendListFragment.class.getSimpleName();
     protected FriendListAdapter mAdapter;
     @ViewInject(R.id.de_ui_friend_list)
     private PinnedHeaderListView mListView;
@@ -52,8 +53,6 @@ public class FriendListFragment extends LsSimpleHomeFragment implements SwitchGr
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
-        super.initWidget(parentView);
-
         mListView.setPinnedHeaderView(LayoutInflater.from(this.getActivity()).inflate(R.layout.de_item_friend_index,
                 mListView, false));
 
@@ -80,9 +79,7 @@ public class FriendListFragment extends LsSimpleHomeFragment implements SwitchGr
     @Override
     protected void getDataFronServer() {
         AllUserManager.getAllUser(String.valueOf(UserManager.getUserBean().getD_id()),
-//                String.valueOf(UserManager.getUserBean().getId()),
-                "19",
-                UserManager.getUserBean().getToken(),
+                String.valueOf(UserManager.getUserBean().getId()),
                 new BaseCallBackJsonArray(getActivity()) {
                     @Override
                     public void onErrorJson(Throwable ex, boolean isOnCallback) {
@@ -107,6 +104,15 @@ public class FriendListFragment extends LsSimpleHomeFragment implements SwitchGr
                             }
                         }
                         mFriendsList = sortFriends(mFriendsList);
+                        //删除旧的数据，保存新的数据
+                        try {
+                            DbManager dbManager = AppContext.getDbmanager();
+                            dbManager.delete(Friend.class);
+                            dbManager.save(mFriendsList);
+                        } catch (DbException e) {
+                            e.printStackTrace();
+                        }
+                        //更新list
                         mAdapter = new FriendListAdapter(getActivity(), mFriendsList);
                         mListView.setAdapter(mAdapter);
                         fillData();

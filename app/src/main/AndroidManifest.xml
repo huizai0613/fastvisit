@@ -46,6 +46,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -56,6 +57,7 @@
                     android:pathPrefix="/conversationlist"
                     android:scheme="rong" />
             </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".app.ui.PayCardActivity"
@@ -64,16 +66,8 @@
             android:name=".app.ui.PublicActivity"
             android:screenOrientation="portrait" />
 
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="SrKEKBn60d4PNrdvgKDeY9fi" />
-
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote"></service>
-
-        <activity android:name=".app.ui.ConversationActivity">
+        <activity android:name=".app.ui.ConversationActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -85,6 +79,16 @@
                     android:scheme="rong" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="SrKEKBn60d4PNrdvgKDeY9fi" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"></service>
+
     </application>
 
 </manifest>

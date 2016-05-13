@@ -1,6 +1,7 @@
 package cn.ahyxy.fastvisit;
 
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,13 +9,16 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xutils.DbManager;
 import org.xutils.common.util.DensityUtil;
 import org.xutils.common.util.LogUtil;
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import cn.ahyxy.fastvisit.app.AppContext;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
+import cn.ahyxy.fastvisit.app.ui.friend.model.Friend;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
 import cn.ahyxy.fastvisit.baseui.LsFragmentTabHost;
 import cn.ahyxy.fastvisit.baseui.titlebar.TitleBar;
@@ -22,11 +26,11 @@ import cn.ahyxy.fastvisit.baseui.uiim.KJActivityStack;
 import cn.ahyxy.fastvisit.weight.MainTab;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.UserInfo;
 
 
 @ContentView(R.layout.activity_main)
-public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener
-{
+public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener, RongIM.UserInfoProvider {
 
     @ViewInject(android.R.id.tabhost)
     private LsFragmentTabHost mTabHost;
@@ -39,14 +43,32 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
         instance.rest();
         if (MainTab.values()[0].getResName().equals(tabId)) {
             instance.setTitlebarMTv("有信", "#000000");
-        } else if (MainTab.values()[2].getResName().equals(tabId) || MainTab.values()[1].getResName().equals(tabId)) {
-            instance.setTitlebarMTv("有薪快访", "#000000");
+        } else if (MainTab.values()[1].getResName().equals(tabId)) {
+            instance.setTitlebarMTv(MainTab.values()[1].getResName(), "#000000");
+            instance.setTitlebarRightIv(R.mipmap.icon_r, null);
+            instance.setTitlebarLeftTv("合肥", "#EA6800", R.mipmap.icon_l, null);
+            instance.getTitlebarLeftTv().setPadding(20, 0, 20, 0);
+        } else if (MainTab.values()[2].getResName().equals(tabId)) {
+            instance.setTitlebarMTv(getString(R.string.app_name), "#000000");
             instance.setTitlebarRightIv(R.mipmap.icon_r, null);
             instance.setTitlebarLeftTv("合肥", "#EA6800", R.mipmap.icon_l, null);
             instance.getTitlebarLeftTv().setPadding(20, 0, 20, 0);
         } else {
             instance.setTitlebarMTv("我的", "#000000");
         }
+    }
+
+    @Override
+    public UserInfo getUserInfo(String userId) {
+        try {
+            DbManager dbManager = AppContext.getDbmanager();
+            Friend friend = dbManager.findById(Friend.class, userId);
+            UserInfo userInfo = new UserInfo(friend.getUserId(), friend.getNickname(), Uri.parse(friend.getPortrait()));
+            return userInfo;
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public interface OnTabReselectedListener
@@ -177,7 +199,7 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
                 @Override
                 public void onSuccess(String userid)
                 {
-
+                    RongIM.setUserInfoProvider(MainActivity.this, true);
                     LogUtil.d("--onSuccess" + userid);
 //                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
 //                    finish();
