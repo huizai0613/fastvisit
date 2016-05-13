@@ -12,7 +12,7 @@ import cn.ahyxy.fastvisit.bean.base.BaseBean;
 @Table(name = "User")
 public class UserBean extends BaseBean<UserBean>
 {
-    @Column(name = "id", isId = true)
+    @Column(name = "id", isId = true,autoGen = false)
     private int id;
     @Column(name = "username")
     private String username;
