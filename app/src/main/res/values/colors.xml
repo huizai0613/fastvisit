@@ -37,4 +37,12 @@
     <color name="but_red_press">#BD0011</color>
     <color name="but_red_nomal">#F50012</color>
 
+    <color name="group_list_black_textview">#353535</color>
+    <color name="de_title_bg">#0195ff</color>
+    <color name="rc_text_color_secondary_inverse">@android:color/white</color>
+    <color name="rc_text_color_select_btn_disable">#97d9b3</color>
+    <color name="group_list_liner">#e4e4e4</color>
+    <color name="main_backgroud_search">#f7f7f7</color>
+    <color name="black_textview">#575757</color>
+
 </resources>

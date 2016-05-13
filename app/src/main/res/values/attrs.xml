@@ -49,4 +49,13 @@
             <enum name="right" value="1"/>
         </attr>
     </declare-styleable>
+    <declare-styleable name="SwitchGroup">
+        <attr name="orientation1">
+            <flag name="horizontal" value="0"></flag>
+            <flag name="vertical" value="1"></flag>
+        </attr>
+        <attr name="pinned_view1" format="reference" />
+        <attr name="pinned_item1" format="reference" />
+        <attr name="pinned_item_array1" format="reference" />
+    </declare-styleable>
 </resources>

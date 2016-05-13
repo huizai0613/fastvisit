@@ -3,6 +3,7 @@ package cn.ahyxy.fastvisit.app.ui;
 import android.app.Dialog;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.CheckBox;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
+import org.xutils.common.util.LogUtil;
 import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -27,6 +29,8 @@ import cn.ahyxy.fastvisit.utils.PreferenceHelper;
 import cn.ahyxy.fastvisit.utils.StringUtils;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 import cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
@@ -187,6 +191,4 @@ public class LoginActivity extends BaseActivity
                     }
                 });
     }
-
-
 }

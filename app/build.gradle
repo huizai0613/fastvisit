@@ -31,5 +31,6 @@ dependencies {
     compile 'com.jude:rollviewpager:1.2.8'
     compile project(':pickerView')
     compile project(':ptr-lib')
+    compile project(':IMKit')
     compile files('libs/BaiduLBS_Android.jar')
 }
