@@ -63,6 +63,9 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
         try {
             DbManager dbManager = AppContext.getDbmanager();
             Friend friend = dbManager.findById(Friend.class, userId);
+            if (friend == null) {
+                return null;
+            }
             UserInfo userInfo = new UserInfo(friend.getUserId(), friend.getNickname(), Uri.parse(friend.getPortrait()));
             return userInfo;
         } catch (DbException e) {
