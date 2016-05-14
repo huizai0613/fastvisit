@@ -60,7 +60,7 @@ public class RegisterActivity extends BaseActivity
         {
             switch (msg.what) {
                 case GET_ID_CODE_SUCCESS:
-
+                    JSONObject obj = (JSONObject) msg.obj;
 
 
                     break;

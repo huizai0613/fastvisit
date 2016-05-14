@@ -3,15 +3,14 @@ package cn.ahyxy.fastvisit.app.ui;
 import android.app.Dialog;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 import org.xutils.common.util.DensityUtil;
-import org.xutils.common.util.LogUtil;
 import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -25,12 +24,11 @@ import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.app.bean.UserBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
+import cn.ahyxy.fastvisit.baseui.uiim.KJActivityStack;
 import cn.ahyxy.fastvisit.utils.PreferenceHelper;
 import cn.ahyxy.fastvisit.utils.StringUtils;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 import cn.ahyxy.fastvisit.weight.SizeChangeLinearLayout;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.RongIMClient;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
@@ -190,5 +188,41 @@ public class LoginActivity extends BaseActivity
                         }
                     }
                 });
+    }
+
+    int i;
+    long front;
+    long later;
+
+    public void shutDown()
+    {
+        i++;
+        if (i < 2) {
+            Toast.makeText(this, "再点一次退出程序", Toast.LENGTH_SHORT).show();
+            front = System.currentTimeMillis();
+            return;
+        }
+        if (i >= 2) {
+            later = System.currentTimeMillis();
+            if (later - front > 2000) {
+                Toast.makeText(this, "再点一次退出程序", Toast.LENGTH_SHORT).show();
+                front = System.currentTimeMillis();
+                i = 1;
+            } else {
+
+                // File videoCachePath =
+                // CommonUtils.getVideoCachePath(mInstance);
+                // File videoCachePath
+                finish();
+                KJActivityStack.create().finishAllActivity();
+                i = 0;
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        shutDown();
     }
 }
