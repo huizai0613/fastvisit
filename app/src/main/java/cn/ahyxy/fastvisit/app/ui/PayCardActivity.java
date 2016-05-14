@@ -1,6 +1,7 @@
 package cn.ahyxy.fastvisit.app.ui;
 
 import android.graphics.Color;
+import android.view.View;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -14,13 +15,17 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 
+import org.json.JSONObject;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 
 import cn.ahyxy.fastvisit.R;
+import cn.ahyxy.fastvisit.app.DataManager.UserManager;
+import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 import cn.ahyxy.fastvisit.baseui.BaseActivity;
 import cn.ahyxy.fastvisit.baseui.titlebar.TitleBar;
 import cn.ahyxy.fastvisit.utils.DateUtils;
+import cn.ahyxy.fastvisit.utils.ToastUtils;
 import cn.ahyxy.fastvisit.weight.simplifyspan.SimplifySpanBuild;
 import cn.ahyxy.fastvisit.weight.simplifyspan.unit.SpecialTextUnit;
 
@@ -39,7 +44,7 @@ public class PayCardActivity extends BaseActivity
     @ViewInject(R.id.btn_qd)
     private TextView btnQd;
 
-
+    private BDLocation location;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
     private BaiduMap map;
@@ -50,7 +55,7 @@ public class PayCardActivity extends BaseActivity
     {
         super.initWidget();
         TitleBar titleBar = TitleBar.getInstance(mBaseActivity);
-        titleBar.initBackTitle(mBaseActivity,"考勤打卡","返回",R.mipmap.action_bar_back);
+        titleBar.initBackTitle(mBaseActivity, "考勤打卡", "返回", R.mipmap.action_bar_back);
         mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);    //注册监听函数
         // 开启定位图层
@@ -61,8 +66,34 @@ public class PayCardActivity extends BaseActivity
         initLocation();
         mLocationClient.start();
         parCardTime.setText(DateUtils.StringData());
-        btnQd.setText("签     到\n" + DateUtils.formatCurTime(DateUtils.FORMATHM));
+        btnQd.setText("打     卡\n" + DateUtils.formatCurTime(DateUtils.FORMATHM));
+        btnQd.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if (location != null) {
+                    showWaitDialog("正在打卡,请稍后...");
+                    UserManager.checkPosition(UserManager.getUserBean().getId() + "", location.getLongitude() + ""
+                            , location.getLatitude() + "", location.getAddrStr(), "1", new BaseCallBackJsonObject(mContext, mBaseActivity)
+                    {
+                        @Override
+                        public void onErrorJson(Throwable ex, boolean isOnCallback)
+                        {
+                            ToastUtils.Infotoast(mContext, "打卡失败,请重试");
+                        }
 
+                        @Override
+                        public void onSuccessJsonObject(JSONObject result)
+                        {
+                            ToastUtils.Infotoast(mContext, "打卡成功");
+                        }
+                    });
+                } else {
+                    ToastUtils.Infotoast(mContext, "定位未成功,请稍后...");
+                }
+            }
+        });
     }
 
     public class MyLocationListener implements BDLocationListener
@@ -75,6 +106,7 @@ public class PayCardActivity extends BaseActivity
         {
             //Receive Location
             if (location.getLocType() == BDLocation.TypeGpsLocation || location.getLocType() == BDLocation.TypeOffLineLocation || location.getLocType() == BDLocation.TypeNetWorkLocation) {// GPS定位结果
+                PayCardActivity.this.location = location;
                 payStatus = new SimplifySpanBuild(mContext, parCardAddress);
                 payStatus.appendSpecialUnit(new SpecialTextUnit("您所在位置 : ", Color.parseColor("#000000"), 12));
                 payStatus.appendSpecialUnit(new SpecialTextUnit(location.getAddrStr(), Color.parseColor("#20A4E8"), 12));

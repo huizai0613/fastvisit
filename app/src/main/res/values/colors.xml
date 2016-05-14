@@ -30,7 +30,7 @@
     <color name="blue_text">#077dc8</color>
     <color name="hint_text_color">#8C8C8C</color>
     <!--按钮颜色-->
-    <color name="but_orange_nomal">#D35F00</color>
+    <color name="but_orange_nomal">#EA6800</color>
     <color name="but_orange_press">#975200</color>
     <color name="but_gray_nomal">#D35F00</color>
     <color name="but_gray_press">#C4C4C4</color>

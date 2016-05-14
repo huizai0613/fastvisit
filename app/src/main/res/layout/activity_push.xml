@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_bg_color"
+              android:orientation="vertical">
+
+    <include
+        layout="@layout/main_titlebar"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/padding_default"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_height"
+                android:layout_marginTop="@dimen/padding_mostbig"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/padding_mostbig"
+                android:paddingRight="@dimen/padding_mostbig">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="品推地点:"
+                    android:textColor="@color/main_text"
+                    android:textSize="@dimen/font_default"/>
+
+                <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:background="@drawable/input_bg_border"
+                    android:hint="请输入地点"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_default"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_height"
+                android:layout_marginTop="@dimen/padding_mostbig"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/padding_mostbig"
+                android:paddingRight="@dimen/padding_mostbig">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="小组成员:"
+                    android:textColor="@color/main_text"
+                    android:textSize="@dimen/font_default"/>
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:background="@drawable/input_bg_border"
+                    android:hint="请输入成员名称"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_default"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_height"
+                android:layout_marginTop="@dimen/padding_mostbig"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/padding_mostbig"
+                android:paddingRight="@dimen/padding_mostbig">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="品推物料:"
+                    android:textColor="@color/main_text"
+                    android:textSize="@dimen/font_default"/>
+
+                <EditText
+                    android:id="@+id/et_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:background="@drawable/input_bg_border"
+                    android:hint="请输入品推物料"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_default"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_mostbig"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/padding_mostbig"
+                android:paddingRight="@dimen/padding_mostbig">
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/default_height"
+                    android:gravity="center"
+                    android:text="效果评价:"
+                    android:textColor="@color/main_text"
+                    android:textSize="@dimen/font_default"/>
+
+                <EditText
+                    android:id="@+id/et_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_default"
+                    android:layout_toRightOf="@id/text"
+                    android:background="@drawable/input_bg_border"
+                    android:gravity="top|left"
+                    android:hint="请输入评价内容"
+                    android:maxLines="4"
+                    android:minLines="4"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_default"/>
+
+            </RelativeLayout>
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/submit_btn"
+                xmlns:fb="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_mostbig"
+                android:layout_marginRight="@dimen/padding_mostbig"
+                android:layout_marginTop="120dip"
+                fb:fb_borderColor="#ff838b"
+                fb:fb_borderWidth="1dp"
+                fb:fb_defaultColor="@color/but_orange_nomal"
+                fb:fb_focusColor="@color/but_orange_press"
+                fb:fb_text="提交"
+                fb:fb_textColor="@color/white"></mehdi.sakout.fancybuttons.FancyButton>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

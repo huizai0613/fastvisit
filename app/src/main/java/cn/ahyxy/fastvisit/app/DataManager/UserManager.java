@@ -4,7 +4,9 @@ import org.xutils.ex.DbException;
 import org.xutils.x;
 
 import cn.ahyxy.fastvisit.app.AppContext;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.CheckPositionParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.LoginParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.RegisterParam;
 import cn.ahyxy.fastvisit.app.bean.UserBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 
@@ -19,6 +21,16 @@ public class UserManager
     public static void login(String account, String pwd, BaseCallBackJsonObject callBackJsonObject)
     {
         x.http().post(new LoginParam(account, pwd), callBackJsonObject);
+    }
+
+    public static void getRegisterCode(String account, BaseCallBackJsonObject callBackJsonObject)
+    {
+        x.http().post(new RegisterParam(account), callBackJsonObject);
+    }
+
+    public static void checkPosition(String id, String s_x, String s_y, String address, String type, BaseCallBackJsonObject callBackJsonObject)
+    {
+        x.http().post(new CheckPositionParam(id, s_x, s_y, address, type), callBackJsonObject);
     }
 
     public static void setUserBean(UserBean userBean)
@@ -37,4 +49,6 @@ public class UserManager
         }
         return userBean;
     }
+
+
 }
