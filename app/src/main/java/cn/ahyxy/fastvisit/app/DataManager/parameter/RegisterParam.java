@@ -3,15 +3,13 @@ package cn.ahyxy.fastvisit.app.DataManager.parameter;
 import cn.ahyxy.fastvisit.base.BaseRequestParam;
 
 /**
- * Created by yexiangyu on 16/4/23.
+ * Created by yexiangyu on 16/5/12.
  */
 public class RegisterParam extends BaseRequestParam
 {
-    public RegisterParam(String shopId,String account,String code)
+    public RegisterParam(String account)
     {
-        super("reg/reg");
-        addBodyParameter("tel",account );
-        addBodyParameter("tel",account );
-        addBodyParameter("tel",account );
+        super("reg/verify_code");
+        addBodyParameter("tel", account);
     }
 }

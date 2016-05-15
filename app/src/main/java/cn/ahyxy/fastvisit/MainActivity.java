@@ -30,7 +30,8 @@ import io.rong.imlib.model.UserInfo;
 
 
 @ContentView(R.layout.activity_main)
-public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener, RongIM.UserInfoProvider {
+public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener, RongIM.UserInfoProvider
+{
 
     @ViewInject(android.R.id.tabhost)
     private LsFragmentTabHost mTabHost;
@@ -42,7 +43,10 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     {
         instance.rest();
         if (MainTab.values()[0].getResName().equals(tabId)) {
-            instance.setTitlebarMTv("有信", "#000000");
+            instance.setTitlebarMTv("消息", "#000000");
+            instance.setTitlebarRightIv(R.mipmap.icon_r, null);
+            instance.setTitlebarLeftTv("合肥", "#EA6800", R.mipmap.icon_l, null);
+            instance.getTitlebarLeftTv().setPadding(20, 0, 20, 0);
         } else if (MainTab.values()[1].getResName().equals(tabId)) {
             instance.setTitlebarMTv(MainTab.values()[1].getResName(), "#000000");
             instance.setTitlebarRightIv(R.mipmap.icon_r, null);
@@ -59,7 +63,8 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     }
 
     @Override
-    public UserInfo getUserInfo(String userId) {
+    public UserInfo getUserInfo(String userId)
+    {
         try {
             DbManager dbManager = AppContext.getDbmanager();
             Friend friend = dbManager.findById(Friend.class, userId);

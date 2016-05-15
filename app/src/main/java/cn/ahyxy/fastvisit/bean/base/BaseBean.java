@@ -14,9 +14,8 @@ import cn.ahyxy.fastvisit.bean.error.SelfError;
 public abstract class BaseBean<T> implements Serializable
 {
 
-    public static JSONObject checkJson(String jsonStr) throws JSONException, NetRequestException
+    public static JSONObject checkJson(JSONObject jsonObject) throws JSONException, NetRequestException
     {
-        JSONObject jsonObject = new JSONObject(jsonStr);
 
         int code = jsonObject.optInt("code", 0);
 

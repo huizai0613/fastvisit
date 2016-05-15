@@ -19,6 +19,7 @@ import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.app.ui.CreateOutletActivity;
 import cn.ahyxy.fastvisit.app.ui.PayCardActivity;
 import cn.ahyxy.fastvisit.app.ui.PublicActivity;
+import cn.ahyxy.fastvisit.app.ui.PushActivity;
 import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 
@@ -112,6 +113,7 @@ public class MainFragment extends LsSimpleHomeFragment
             case R.id.ll_pointmanage://网点管理
                 break;
             case R.id.ll_push://推广
+                mActivity.showActivity(mActivity, PushActivity.class);
                 break;
             case R.id.ll_public://公告
                 mActivity.showActivity(mActivity, PublicActivity.class);

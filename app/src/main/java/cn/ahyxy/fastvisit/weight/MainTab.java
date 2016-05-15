@@ -6,13 +6,11 @@ import cn.ahyxy.fastvisit.app.ui.fragment.MainFragment;
 import cn.ahyxy.fastvisit.app.ui.fragment.MyConversationListFragment;
 import cn.ahyxy.fastvisit.app.ui.fragment.MyFragment;
 import cn.ahyxy.fastvisit.app.ui.friend.fragment.FriendListFragment;
-import io.rong.imkit.fragment.ConversationFragment;
-import io.rong.imkit.fragment.ConversationListFragment;
 
 public enum MainTab
 {
 
-    MSG(0, "有信", R.drawable.tab_icon_nav1,
+    MSG(0, "消息", R.drawable.tab_icon_nav1,
             MyConversationListFragment.class),
     ADDRESSBOOK(1, "通讯录", R.drawable.tab_icon_nav2,
             FriendListFragment.class),
