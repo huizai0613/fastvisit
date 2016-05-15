@@ -46,6 +46,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -65,7 +66,6 @@
         <activity
             android:name=".app.ui.PublicActivity"
             android:screenOrientation="portrait" />
-
         <activity android:name=".app.ui.ConversationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -86,8 +86,9 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"/>
+            android:process=":remote" />
 
+        <activity android:name=".app.ui.CreateOutletActivity"></activity>
     </application>
 
 </manifest>

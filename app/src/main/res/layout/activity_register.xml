@@ -94,7 +94,7 @@
                 android:layout_marginTop="@dimen/padding_smaill"
                 fb:fb_borderColor="#ff838b"
                 fb:fb_borderWidth="1dp"
-                fb:fb_defaultColor="@color/but_orange_nomal"
+                fb:fb_defaultColor="@color/but_orange_normal"
                 fb:fb_focusColor="@color/but_orange_press"
                 fb:fb_text="获取验证码"
                 fb:fb_textColor="@color/white"
@@ -178,7 +178,7 @@
             android:layout_marginTop="40dip"
             fb:fb_borderColor="#ff838b"
             fb:fb_borderWidth="1dp"
-            fb:fb_defaultColor="@color/but_orange_nomal"
+            fb:fb_defaultColor="@color/but_orange_normal"
             fb:fb_focusColor="@color/but_orange_press"
             fb:fb_text="注  册"
             fb:fb_textColor="@color/white"></mehdi.sakout.fancybuttons.FancyButton>

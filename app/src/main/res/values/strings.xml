@@ -6,4 +6,23 @@
     <string name="gravity_left">left</string>
     <string name="gravity_center">center</string>
     <string name="gravity_right">right</string>
+
+    <!--create outlet fragment-->
+    <string name="create_outlet">新开网点</string>
+    <string name="pos_name">终端名称：</string>
+    <string name="please_input_pos_name">请输入终端名称</string>
+    <string name="category">分&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;类：</string>
+    <string name="dining">餐饮</string>
+    <string name="flow">流通</string>
+    <string name="trader">二批分销商</string>
+    <string name="address">地&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;址：</string>
+    <string name="please_input_address">请输入地址</string>
+    <string name="contacts">联&#160;&#160;系&#160;&#160;人：</string>
+    <string name="please_input_contacts">请输入联系人</string>
+    <string name="phone_number">电&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;话：</string>
+    <string name="please_input_phone_number">请输入电话号码</string>
+    <string name="remark">备&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;注：</string>
+    <string name="remark_hint">可一句话描述该终端特点</string>
+    <string name="outlet_save_and_quit">保存并退出</string>
+    <string name="outlet_next">下一步</string>
 </resources>

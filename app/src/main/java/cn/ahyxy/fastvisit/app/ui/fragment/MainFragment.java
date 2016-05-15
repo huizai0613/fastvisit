@@ -16,6 +16,7 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import cn.ahyxy.fastvisit.R;
+import cn.ahyxy.fastvisit.app.ui.CreateOutletActivity;
 import cn.ahyxy.fastvisit.app.ui.PayCardActivity;
 import cn.ahyxy.fastvisit.app.ui.PublicActivity;
 import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
@@ -104,6 +105,7 @@ public class MainFragment extends LsSimpleHomeFragment
                 mActivity.showActivity(mActivity, PayCardActivity.class);
                 break;
             case R.id.ll_newpoint://新开网点
+                mActivity.showActivity(mActivity, CreateOutletActivity.class);
                 break;
             case R.id.ll_pointsearch://网点搜索
                 break;

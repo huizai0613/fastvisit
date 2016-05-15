@@ -31,4 +31,27 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+
+    <style name="content_text_style">
+        <item name="android:textColor">@color/main_text</item>
+        <item name="android:textSize">@dimen/font_big</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="content_edit_style">
+        <item name="android:textColor">@color/main_text</item>
+        <item name="android:textSize">@dimen/font_big</item>
+        <item name="android:textColorHint">@color/hint_text_color</item>
+    </style>
+
+    <style name="content_edit_single_line_style" parent="content_edit_style">
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="content_radio_btn_style">
+        <item name="android:textColor">@color/main_text</item>
+        <item name="android:textSize">@dimen/font_big</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/padding_default</item>
+    </style>
 </resources>
