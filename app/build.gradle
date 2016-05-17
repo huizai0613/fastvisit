@@ -21,16 +21,17 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile project(':pickerView')
+    compile project(':ptr-lib')
+    compile project(':IMKit')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
     compile 'org.simple:androideventbus:1.0.5.1'
     compile 'com.github.medyo:fancybuttons:1.6'
     compile 'org.xutils:xutils:3.3.22'
     compile 'cn.finalteam:galleryfinal:1.4.8.7'
     compile 'com.jude:rollviewpager:1.2.8'
-    compile project(':pickerView')
-    compile project(':ptr-lib')
-    compile project(':IMKit')
-    compile files('libs/BaiduLBS_Android.jar')
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
+    compile 'com.android.support:support-v4:23.3.0'
 }

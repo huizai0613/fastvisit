@@ -16,10 +16,15 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import cn.ahyxy.fastvisit.R;
-import cn.ahyxy.fastvisit.app.ui.CreateOutletActivity;
+import cn.ahyxy.fastvisit.app.ui.AdvancedPOSActivity;
+import cn.ahyxy.fastvisit.app.ui.HotProductsActivity;
+import cn.ahyxy.fastvisit.app.ui.NoteActivity;
+import cn.ahyxy.fastvisit.app.ui.OutletCreateActivity;
+import cn.ahyxy.fastvisit.app.ui.OutletManageActivity;
 import cn.ahyxy.fastvisit.app.ui.PayCardActivity;
 import cn.ahyxy.fastvisit.app.ui.PublicActivity;
 import cn.ahyxy.fastvisit.app.ui.PushActivity;
+import cn.ahyxy.fastvisit.app.ui.OutletSearchActivity;
 import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 
@@ -98,7 +103,8 @@ public class MainFragment extends LsSimpleHomeFragment
 
     }
 
-    @Event(value = {R.id.ll_playcard, R.id.ll_newpoint, R.id.ll_pointsearch, R.id.ll_pointmanage, R.id.ll_push, R.id.ll_public, R.id.ll_worknotes, R.id.ll_more})
+    @Event(value = {R.id.ll_playcard, R.id.ll_newpoint, R.id.ll_pointsearch, R.id.ll_pointmanage, R.id.ll_push, R.id.ll_public, R.id.ll_worknotes, R.id.ll_more,
+    R.id.main_tab1, R.id.main_tab2, R.id.main_tab3, R.id.main_tab4})
     private void iconClick(View view)
     {
         switch (view.getId()) {
@@ -106,11 +112,13 @@ public class MainFragment extends LsSimpleHomeFragment
                 mActivity.showActivity(mActivity, PayCardActivity.class);
                 break;
             case R.id.ll_newpoint://新开网点
-                mActivity.showActivity(mActivity, CreateOutletActivity.class);
+                mActivity.showActivity(mActivity, OutletCreateActivity.class);
                 break;
             case R.id.ll_pointsearch://网点搜索
+                mActivity.showActivity(mActivity, OutletSearchActivity.class);
                 break;
             case R.id.ll_pointmanage://网点管理
+                mActivity.showActivity(mActivity, OutletManageActivity.class);
                 break;
             case R.id.ll_push://推广
                 mActivity.showActivity(mActivity, PushActivity.class);
@@ -122,6 +130,15 @@ public class MainFragment extends LsSimpleHomeFragment
                 break;
             case R.id.ll_more://更多
                 ToastUtils.Infotoast(mActivity, "开发升级中......");
+                break;
+            case R.id.main_tab1:
+                mActivity.showActivity(mActivity, AdvancedPOSActivity.class);
+                break;
+            case R.id.main_tab2:
+                mActivity.showActivity(mActivity, HotProductsActivity.class);
+                break;
+            case R.id.main_tab4:
+                mActivity.showActivity(mActivity, NoteActivity.class);
                 break;
         }
     }

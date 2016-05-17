@@ -7,11 +7,16 @@
     <string name="gravity_center">center</string>
     <string name="gravity_right">right</string>
 
-    <!--create outlet fragment-->
-    <string name="create_outlet">新开网点</string>
+    <!--outlet create-->
+    <string name="outlet_create">新开网点</string>
     <string name="pos_name">终端名称：</string>
     <string name="please_input_pos_name">请输入终端名称</string>
     <string name="category">分&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;类：</string>
+    <string-array name="categories">
+        <item>餐饮</item>
+        <item>流通</item>
+        <item>二批分销商</item>
+    </string-array>
     <string name="dining">餐饮</string>
     <string name="flow">流通</string>
     <string name="trader">二批分销商</string>
@@ -25,4 +30,28 @@
     <string name="remark_hint">可一句话描述该终端特点</string>
     <string name="outlet_save_and_quit">保存并退出</string>
     <string name="outlet_next">下一步</string>
+
+    <!-- order manage -->
+    <string name="order_manage">订单管理</string>
+
+    <!-- outlet search -->
+    <string name="outlet_search">搜索网点</string>
+    <string name="search">搜索</string>
+    <string name="hot_search">热门搜索</string>
+    <string name="search_result">查询结果</string>
+
+    <!-- outlet manage -->
+    <string name="outlet_manage">巡店管理</string>
+
+    <!-- advanced POS -->
+    <string name="advanced_pos">高级终端</string>
+
+    <!-- note -->
+    <string name="note">备忘录</string>
+
+    <!-- hot products -->
+    <string name="hot_products">热销商品</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

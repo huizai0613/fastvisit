@@ -8,7 +8,7 @@
     <include layout="@layout/main_titlebar" />
 
     <fragment
-        android:id="@+id/conversation"
+        android:id="@+id/fragment_container"
         android:name="io.rong.imkit.fragment.ConversationFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
