@@ -23,7 +23,7 @@ import java.util.List;
 
 import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.app.AppContext;
-import cn.ahyxy.fastvisit.app.DataManager.AllUserManager;
+import cn.ahyxy.fastvisit.app.DataManager.DataManager;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.app.ui.friend.adapter.FriendListAdapter;
 import cn.ahyxy.fastvisit.app.ui.friend.model.Friend;
@@ -78,7 +78,7 @@ public class FriendListFragment extends LsSimpleHomeFragment implements SwitchGr
 
     @Override
     protected void getDataFronServer() {
-        AllUserManager.getAllUser(String.valueOf(UserManager.getUserBean().getD_id()),
+        DataManager.getAllUser(String.valueOf(UserManager.getUserBean().getD_id()),
                 String.valueOf(UserManager.getUserBean().getId()),
                 new BaseCallBackJsonArray(getActivity()) {
                     @Override

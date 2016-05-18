@@ -16,7 +16,7 @@ public class OutletSearchActivity extends BaseActivity {
     public void initWidget() {
         super.initWidget();
         TitleBar instance = TitleBar.getInstance(mBaseActivity);
-        instance.initDefaultBackTitle(mBaseActivity, getString(R.string.advanced_pos));
+        instance.initDefaultBackTitle(mBaseActivity, getString(R.string.outlet_search));
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, new OutletSearchFragment());

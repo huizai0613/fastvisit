@@ -4,7 +4,7 @@
     <dimen name="font_most_big">20dip</dimen>
     <dimen name="font_big">16dip</dimen>
     <dimen name="font_default">14dip</dimen>
-    <dimen name="font_smaill">12dip</dimen>
+    <dimen name="font_small">12dip</dimen>
     <!--间距大小-->
     <dimen name="padding_mostbig">20dip</dimen>
     <dimen name="padding_big">15dip</dimen>

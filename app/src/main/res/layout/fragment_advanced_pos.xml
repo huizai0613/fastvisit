@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.ahyxy.fastvisit.app.ui.fragment.AdvancedPOSFragment">
+
+    <ListView
+        android:id="@+id/lv_advanced_pos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/gray_text"
+        android:dividerHeight="@dimen/size_min"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+</FrameLayout>

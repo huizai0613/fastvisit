@@ -18,6 +18,7 @@
         android:imeOptions="actionSearch" />
 
     <LinearLayout
+        android:id="@+id/ll_outlet_search_hot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/et_outlet_search"
@@ -32,6 +33,34 @@
             android:text="@string/hot_search" />
 
         <ListView
+            android:id="@+id/lv_outlet_search_hot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_outlet_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/et_outlet_search"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/content_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hot_search"
+            android:padding="@dimen/spacing_small"
+            android:textColor="@color/orange_text"/>
+
+        <ListView
+            android:id="@+id/lv_outlet_search_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cacheColorHint="#00000000"
