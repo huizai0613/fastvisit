@@ -49,7 +49,10 @@ public class DataManager {
                 JSONObject jsonObject = result.getJSONObject(i);
                 posBean.setT_name(jsonObject.getString("t_name"));
                 posBean.setT_address(jsonObject.getString("t_address"));
+                posBean.setCate_one(jsonObject.getInt("cate_one"));
                 posBean.setT_level(jsonObject.getInt("t_level"));
+                posBean.setContact_name(jsonObject.getString("contact_name"));
+                posBean.setContact_tel(jsonObject.getString("contact_tel"));
                 posBeanList.add(posBean);
             }
         } catch (JSONException e) {

@@ -14,11 +14,13 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -30,7 +32,6 @@ import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.app.bean.POSBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
 import cn.ahyxy.fastvisit.baseui.BaseFragment;
-import cn.ahyxy.fastvisit.baseui.SupportFragment;
 
 public class OutletSearchFragment extends BaseFragment implements TextView.OnEditorActionListener, AdapterView.OnItemClickListener, TextWatcher {
     @ViewInject(R.id.et_outlet_search)
@@ -45,7 +46,7 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
     private ListView resultListView;
 
     private HotAdapter hotAdapter;
-
+    private ResultAdapter resultAdapter;
 
     public OutletSearchFragment() {
         // Required empty public constructor
@@ -59,6 +60,9 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
         hotAdapter = new HotAdapter();
         hotListView.setAdapter(hotAdapter);
         hotListView.setOnItemClickListener(this);
+        resultAdapter = new ResultAdapter();
+        resultListView.setAdapter(resultAdapter);
+
         getSearchHot();
     }
 
@@ -91,11 +95,30 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
             @Override
             public void onSuccessJsonArray(JSONArray result) {
                 hideWaitDialog();
-                if (hotAdapter != null) {
-                    hotAdapter.setData(DataManager.jsonArrayToPOSBeanList(result));
+                if (resultAdapter != null) {
+                    resultAdapter.setData(DataManager.jsonArrayToPOSBeanList(result));
+                    showResultLayout(true);
                 }
             }
         });
+    }
+
+    private void showResultLayout(boolean isShow) {
+        if (isShow) {
+            if (resultLayout != null) {
+                resultLayout.setVisibility(View.VISIBLE);
+            }
+            if (hotLayout != null) {
+                hotLayout.setVisibility(View.GONE);
+            }
+        } else {
+            if (resultLayout != null) {
+                resultLayout.setVisibility(View.GONE);
+            }
+            if (hotLayout != null) {
+                hotLayout.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override
@@ -118,7 +141,11 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (parent == hotListView) {
-            onSearchAction(hotAdapter.getItem(position).getT_name());
+            String keyword = hotAdapter.getItem(position).getT_name();
+            if (searchEditText != null) {
+                searchEditText.setText(keyword);
+            }
+            onSearchAction(keyword);
         } else if (parent == resultListView) {
             //TODO navigation
         }
@@ -137,8 +164,7 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
     @Override
     public void afterTextChanged(Editable s) {
         if (s.length() == 0) {
-            hotLayout.setVisibility(View.VISIBLE);
-            resultLayout.setVisibility(View.GONE);
+            showResultLayout(false);
         }
     }
 
@@ -147,7 +173,9 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
 
         public void setData(List<POSBean> list) {
             this.list.clear();
-            this.list.addAll(list);
+            if (list != null) {
+                this.list.addAll(list);
+            }
             notifyDataSetChanged();
         }
 
@@ -187,10 +215,42 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
         }
     }
 
-    private static class ResultAdapter extends HotAdapter {
+    public static class ResultAdapter extends HotAdapter {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
+            ViewHolder holder;
+            if (convertView == null) {
+                convertView = View.inflate(parent.getContext(), R.layout.list_item_outllet_search_result, null);
+                holder = new ViewHolder(convertView);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            POSBean posBean = getItem(position);
+            holder.name.setText(posBean.getT_name());
+            holder.category.setText(String.valueOf(posBean.getCate_two()));
+            holder.address.setText(posBean.getT_address());
+            holder.contact.setText(posBean.getContact_name());
+            holder.phoneNumber.setText(posBean.getContact_tel());
+            return convertView;
+        }
+
+        private static class ViewHolder {
+            ImageView icon;
+            TextView name;
+            TextView category;
+            TextView address;
+            TextView contact;
+            TextView phoneNumber;
+
+            public ViewHolder(View view) {
+                icon = (ImageView) view.findViewById(R.id.iv_outlet_search_result_icon);
+                name = (TextView) view.findViewById(R.id.tv_outlet_search_result_name);
+                category = (TextView) view.findViewById(R.id.tv_outlet_search_result_category);
+                address = (TextView) view.findViewById(R.id.tv_outlet_search_result_address);
+                contact = (TextView) view.findViewById(R.id.tv_outlet_search_result_contact);
+                phoneNumber = (TextView) view.findViewById(R.id.tv_outlet_search_result_phone_number);
+            }
         }
     }
 }

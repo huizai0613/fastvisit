@@ -39,6 +39,8 @@
     <string name="search">搜索</string>
     <string name="hot_search">热门搜索</string>
     <string name="search_result">查询结果</string>
+    <string name="outlet_contact">联系人：</string>
+    <string name="outlet_phone_number">电话：</string>
 
     <!-- outlet manage -->
     <string name="outlet_manage">巡店管理</string>

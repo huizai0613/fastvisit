@@ -27,6 +27,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".app.ui.AppStart"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -100,10 +101,18 @@
         <activity
             android:name=".app.ui.OutletSearchActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".app.ui.OutletManageActivity" />
-        <activity android:name=".app.ui.AdvancedPOSActivity" />
-        <activity android:name=".app.ui.NoteActivity" />
-        <activity android:name=".app.ui.HotProductsActivity"></activity>
+        <activity
+            android:name=".app.ui.OutletManageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.ui.AdvancedPOSActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.ui.NoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.ui.HotProductsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -55,7 +55,7 @@
             style="@style/content_text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hot_search"
+            android:text="@string/search_result"
             android:padding="@dimen/spacing_small"
             android:textColor="@color/orange_text"/>
 
