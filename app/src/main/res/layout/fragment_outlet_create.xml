@@ -130,7 +130,7 @@
                     android:text="@string/contacts" />
 
                 <EditText
-                    android:id="@+id/edt_outlet_contacts"
+                    android:id="@+id/edt_outlet_contact"
                     style="@style/content_edit_single_line_style"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -162,7 +162,8 @@
                     android:layout_marginLeft="@dimen/padding_default"
                     android:hint="@string/please_input_phone_number"
                     android:paddingLeft="@dimen/padding_default"
-                    android:paddingRight="@dimen/padding_default" />
+                    android:paddingRight="@dimen/padding_default"
+                    android:inputType="phone" />
 
             </LinearLayout>
 
@@ -200,28 +201,27 @@
                 android:orientation="horizontal">
 
                 <mehdi.sakout.fancybuttons.FancyButton xmlns:fb="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/submit_btn"
+                    android:id="@+id/btn_outlet_save"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/spacing_small"
                     android:layout_weight="1"
-                    fb:fb_borderColor="#ff838b"
-                    fb:fb_borderWidth="1dp"
+                    fb:radius="5dp"
                     fb:fb_defaultColor="@color/but_orange_normal"
                     fb:fb_focusColor="@color/but_orange_press"
                     fb:fb_text="@string/outlet_save_and_quit"
                     fb:fb_textColor="@color/white" />
 
-                <Button
+                <mehdi.sakout.fancybuttons.FancyButton xmlns:fb="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/btn_outlet_next"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/spacing_small"
+                    android:layout_marginLeft="@dimen/spacing_small"
                     android:layout_weight="1"
-                    android:background="#23B6EC"
-                    android:text="@string/outlet_next"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_big" />
-
+                    fb:radius="5dp"
+                    fb:fb_defaultColor="#23B6EC"
+                    fb:fb_text="@string/outlet_next"
+                    fb:fb_textColor="@color/white" />
 
             </LinearLayout>
 

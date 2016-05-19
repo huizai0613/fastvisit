@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="error_field_required">这一项必须填写</string>
+    <string name="location_failed">定位失败</string>
     <string name="login_username_hint">请输入用户名</string>
     <string name="login_pwd_hint">请输入密码</string>
     <string name="tag">tag</string>
@@ -30,6 +32,7 @@
     <string name="remark_hint">可一句话描述该终端特点</string>
     <string name="outlet_save_and_quit">保存并退出</string>
     <string name="outlet_next">下一步</string>
+    <string name="create_success">创建成功</string>
 
     <!-- order manage -->
     <string name="order_manage">订单管理</string>

@@ -11,10 +11,14 @@ import java.util.List;
 
 import cn.ahyxy.fastvisit.app.DataManager.parameter.AdvancedPOSParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.AllUserParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.CreateOutletParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOutletCategoriesParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchHotParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchResultParam;
 import cn.ahyxy.fastvisit.app.bean.POSBean;
+import cn.ahyxy.fastvisit.app.bean.OutletCategoryBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
+import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 
 /**
  * Created by yexiangyu on 16/5/12.
@@ -40,6 +44,19 @@ public class DataManager {
         x.http().post(new OutletSearchResultParam(id, keyword), baseCallBackJsonArray);
     }
 
+    public static void getOutletCategories(String dId, BaseCallBackJsonArray baseCallBackJsonArray) {
+        LogUtil.d("getOutletCategories dId:" + dId);
+        x.http().post(new GetOutletCategoriesParam(dId), baseCallBackJsonArray);
+    }
+
+    public static void createOutlet(String dId, String cateOne, String cateTwo, String tX, String tY, String id,
+                                    String name, String address, String contactName, String tel, String remark,
+                                    BaseCallBackJsonObject baseCallBackJsonObject) {
+        CreateOutletParam createOutletParam = new CreateOutletParam(dId, cateOne, cateTwo, tX, tY, id, name, address, contactName, tel, remark);
+        LogUtil.d("createOutlet :" + createOutletParam.toString());
+        x.http().post(createOutletParam, baseCallBackJsonObject);
+    }
+
     public static List<POSBean> jsonArrayToPOSBeanList(JSONArray result) {
         List<POSBean> posBeanList = new ArrayList<>();
         int length = result.length();
@@ -59,5 +76,25 @@ public class DataManager {
             e.printStackTrace();
         }
         return posBeanList;
+    }
+
+    public static List<OutletCategoryBean> jsonArrayToPOSCategoryList(JSONArray result) {
+
+        List<OutletCategoryBean> list = new ArrayList<>();
+        int length = result.length();
+        try {
+            for (int i = 0; i < length; i++) {
+                OutletCategoryBean bean = new OutletCategoryBean();
+                JSONObject object = result.getJSONObject(i);
+                bean.setId(object.getInt("id"));
+                bean.setD_id(object.getInt("d_id"));
+                bean.setP_id(object.getInt("p_id"));
+                bean.setCate_name(object.getString("cate_name"));
+                list.add(bean);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
