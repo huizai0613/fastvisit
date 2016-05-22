@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="beforeDescendants"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_small">
+
+    <LinearLayout
+        android:id="@+id/ll_product_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_product_name"
+            style="@style/content_text_title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tv_product_subtitle"
+            style="@style/content_text_subtitle_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_small"
+            tools:text="@string/app_name" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_product_title"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/content_text_subtitle_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_price" />
+
+        <TextView
+            android:id="@+id/tv_product_price"
+            style="@style/content_text_subtitle_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/but_orange_normal"
+            tools:text="@string/app_name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/iv_product_subtract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/btn_j" />
+
+        <EditText
+            android:id="@+id/et_product_count"
+            style="@style/content_edit_single_line_style"
+            android:layout_width="@dimen/size_normal"
+            android:layout_height="@dimen/default_height"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="9" />
+
+        <ImageView
+            android:id="@+id/iv_product_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/btn_add" />
+    </LinearLayout>
+</RelativeLayout>

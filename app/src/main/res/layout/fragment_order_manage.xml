@@ -4,14 +4,160 @@
     android:layout_height="match_parent"
     tools:context="cn.ahyxy.fastvisit.app.ui.fragment.OrderManageFragment">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll_product_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_large">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <include layout="@layout/layout_outlet_head" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:src="@mipmap/ic_launcher"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_normal">
+
+            <TextView
+                android:id="@+id/tv_product_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_orange_corner"
+                android:padding="@dimen/spacing_min"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small"
+                tools:text="@string/app_name" />
+
+            <TextView
+                android:id="@+id/tv_product_count"
+                style="@style/content_text_subtitle_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                tools:text="@string/app_name" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_order_manage_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/group_list_liner"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:paddingTop="@dimen/spacing_big">
+
+            <TextView
+                style="@style/content_text_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pay_method" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:checkedButton="@+id/rb_order_manage_cash"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_order_manage_cash"
+                    style="@style/content_radio_btn_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_small"
+                    android:text="@string/cash" />
+
+                <RadioButton
+                    android:id="@+id/rb_order_manage_credit"
+                    style="@style/content_radio_btn_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_small"
+                    android:text="@string/credit" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:paddingTop="@dimen/spacing_normal">
+
+            <TextView
+                style="@style/content_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remark" />
+
+            <TextView
+                android:id="@+id/tv_order_manage_remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_normal"
+            android:background="@color/but_gray_press"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/spacing_normal">
+
+
+            <TextView
+                android:id="@+id/tv_order_manage_price_hint"
+                style="@style/content_text_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/product_price_sum" />
+
+            <TextView
+                android:id="@+id/tv_order_manage_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/orange_text"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_toRightOf="@+id/tv_order_manage_price_hint"
+                tools:text="@string/app_name" />
+
+            <mehdi.sakout.fancybuttons.FancyButton xmlns:fb="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/btn_order_commit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:paddingLeft="@dimen/spacing_big"
+                android:paddingRight="@dimen/spacing_big"
+                fb:fb_defaultColor="@color/but_red_nomal"
+                fb:fb_focusColor="@color/but_red_press"
+                fb:fb_text="@string/commit_order"
+                fb:fb_textColor="@color/white"
+                fb:fb_textSize="@dimen/font_default"
+                fb:radius="5dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_order_manage_bottom"
+        android:layout_below="@+id/ll_product_title"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/group_list_liner"
+        android:dividerHeight="@dimen/size_min"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
 </RelativeLayout>

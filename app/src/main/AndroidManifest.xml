@@ -27,8 +27,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".app.ui.AppStart"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -94,8 +94,8 @@
 
         <activity
             android:name=".app.ui.OutletCreateActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".app.ui.OrderManageActivity"
             android:screenOrientation="portrait" />
@@ -114,6 +114,10 @@
         <activity
             android:name=".app.ui.HotProductsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.ui.ProductListActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

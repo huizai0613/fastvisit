@@ -18,7 +18,7 @@ public class OrderManageActivity extends BaseActivity {
         instance.initDefaultBackTitle(mBaseActivity, getString(R.string.order_manage));
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, new OrderManageFragment());
+        transaction.add(R.id.fragment_container, OrderManageFragment.newInstance(getIntent().getExtras()));
         transaction.commit();
     }
 }

@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.ahyxy.fastvisit.app.ui.fragment.ProductListFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_product_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal">
+
+        <TextView
+            android:id="@+id/tv_product_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_orange_corner"
+            android:padding="@dimen/spacing_min"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_small"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tv_product_count"
+            style="@style/content_text_subtitle_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_small"
+            tools:text="@string/app_name" />
+    </LinearLayout>
+
+    <mehdi.sakout.fancybuttons.FancyButton xmlns:fb="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/btn_product_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/spacing_normal"
+        fb:fb_defaultColor="@color/but_orange_normal"
+        fb:fb_focusColor="@color/but_orange_press"
+        fb:fb_text="@string/outlet_next"
+        fb:fb_textColor="@color/white"
+        fb:fb_textSize="@dimen/font_default"
+        fb:radius="5dp" />
+
+    <ListView
+        android:id="@+id/lv_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_product_next"
+        android:layout_below="@+id/ll_product_title"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/group_list_liner"
+        android:dividerHeight="@dimen/size_min"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+</RelativeLayout>

@@ -2,6 +2,7 @@ package cn.ahyxy.fastvisit.app.ui.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -19,6 +20,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.Event;
@@ -32,10 +34,10 @@ import cn.ahyxy.fastvisit.app.AppContext;
 import cn.ahyxy.fastvisit.app.DataManager.DataManager;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.app.bean.OutletCategoryBean;
+import cn.ahyxy.fastvisit.app.ui.ProductListActivity;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 import cn.ahyxy.fastvisit.baseui.BaseFragment;
-import cn.ahyxy.fastvisit.utils.StringUtils;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 
 public class OutletCreateFragment extends BaseFragment implements AdapterView.OnItemSelectedListener {
@@ -86,6 +88,18 @@ public class OutletCreateFragment extends BaseFragment implements AdapterView.On
     }
 
     private void getCategoriesFromServer() {
+        DataManager.getOrderList(String.valueOf(UserManager.getUserBean().getId()),
+                new BaseCallBackJsonArray(getContext()) {
+                    @Override
+                    public void onErrorJson(Throwable ex, boolean isOnCallback) {
+
+                    }
+
+                    @Override
+                    public void onSuccessJsonArray(JSONArray result) {
+
+                    }
+                });
         showWaitDialog(getString(R.string.error_view_loading));
         DataManager.getOutletCategories(String.valueOf(UserManager.getUserBean().getD_id()),
                 new BaseCallBackJsonArray(getContext()) {
@@ -116,12 +130,14 @@ public class OutletCreateFragment extends BaseFragment implements AdapterView.On
         int id = v.getId();
         switch (id) {
             case R.id.btn_outlet_save:
-                createOutlet();
+            case R.id.btn_outlet_next:
+                createOutlet(id);
                 break;
         }
     }
 
-    private void createOutlet() {
+    private void createOutlet(final int id) {
+        final Bundle bundle = new Bundle();
         String errorStr = getString(R.string.error_field_required);
         String name = nameEditText.getText().toString();
 
@@ -134,13 +150,16 @@ public class OutletCreateFragment extends BaseFragment implements AdapterView.On
             nameEditText.setError(errorStr);
             return;
         }
+        bundle.putString("t_name", name);
 
         String cateOne = "";
+        String cateName = "";
         int mainPosition = mainCategoriesSpinner.getSelectedItemPosition();
         LogUtil.d("position:" + mainPosition);
         OutletCategoryBean mainBean = mainCategoryArrayAdapter.getMyItem(mainPosition);
         if (mainBean != null) {
             cateOne = String.valueOf(mainBean.getId());
+            cateName = mainBean.getCate_name();
         }
         String cateTwo = "";
         int subPosition = subCategoriesSpinner.getSelectedItemPosition();
@@ -150,6 +169,8 @@ public class OutletCreateFragment extends BaseFragment implements AdapterView.On
             cateTwo = String.valueOf(subBean.getId());
         }
         LogUtil.d("cateOne:" + cateOne + ", cateTwo:" + cateTwo);
+        bundle.putString("cate_one", cateOne);
+        bundle.putString("cate_name", cateName);
 
         String address = addressEditText.getText().toString();
         if (TextUtils.isEmpty(address)) {
@@ -157,20 +178,25 @@ public class OutletCreateFragment extends BaseFragment implements AdapterView.On
             ToastUtils.Errortoast(getContext(), getString(R.string.location_failed));
             return;
         }
+        bundle.putString("t_address", address);
 
         String contact = contactEditText.getText().toString();
         if (TextUtils.isEmpty(contact)) {
             contactEditText.setError(errorStr);
             return;
         }
+        bundle.putString("contact_name", contact);
 
         String phoneNumber = phoneNumberEditText.getText().toString();
         if (TextUtils.isEmpty(phoneNumber)) {
             phoneNumberEditText.setError(errorStr);
             return;
         }
+        bundle.putString("contact_tel", phoneNumber);
 
         String remark = remarkEditText.getText().toString();
+        bundle.putString("t_remark", remark);
+
         showWaitDialog(getString(R.string.error_view_loading));
         DataManager.createOutlet(String.valueOf(UserManager.getUserBean().getD_id()), cateOne, cateTwo,
                 String.valueOf(bdLocation.getLongitude()), String.valueOf(bdLocation.getLatitude()),
@@ -182,7 +208,20 @@ public class OutletCreateFragment extends BaseFragment implements AdapterView.On
                         hideWaitDialog();
                         if (getContext() != null) {
                             ToastUtils.Infotoast(getContext(), getString(R.string.create_success));
-                            getActivity().finish();
+                            if (id == R.id.btn_outlet_save) {
+                                getActivity().finish();
+                            } else if (id == R.id.btn_outlet_next) {
+                                Intent intent = new Intent(getContext(), ProductListActivity.class);
+                                try {
+                                    bundle.putInt("id", result.getInt("id"));
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                } catch (JSONException e) {
+                                    ToastUtils.Errortoast(getContext(), getString(R.string.error_json));
+                                    e.printStackTrace();
+                                }
+                            }
                         }
                     }
 

@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/padding_default"
-                    android:background="@drawable/input_bg_border"
+                    android:background="@drawable/input_bg_border_selector"
                     android:hint="请输入地点"
                     android:paddingLeft="5dp"
                     android:textSize="@dimen/font_default"/>
@@ -69,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/padding_default"
-                    android:background="@drawable/input_bg_border"
+                    android:background="@drawable/input_bg_border_selector"
                     android:hint="请输入成员名称"
                     android:paddingLeft="5dp"
                     android:textSize="@dimen/font_default"/>
@@ -97,7 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/padding_default"
-                    android:background="@drawable/input_bg_border"
+                    android:background="@drawable/input_bg_border_selector"
                     android:hint="请输入品推物料"
                     android:paddingLeft="5dp"
                     android:textSize="@dimen/font_default"/>
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding_default"
                     android:layout_toRightOf="@id/text"
-                    android:background="@drawable/input_bg_border"
+                    android:background="@drawable/input_bg_border_selector"
                     android:gravity="top|left"
                     android:hint="请输入评价内容"
                     android:maxLines="4"

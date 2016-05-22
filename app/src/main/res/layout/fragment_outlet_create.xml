@@ -11,7 +11,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_big"
             android:orientation="vertical"
             android:padding="@dimen/padding_default">
 
@@ -42,7 +42,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_height"
-                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_big"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -62,7 +62,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/padding_default"
                         android:layout_weight="1"
-                        android:background="@drawable/input_bg_border"
+                        android:background="@drawable/input_bg_border_selector"
                         android:entries="@array/categories" />
 
                     <Spinner
@@ -71,7 +71,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/padding_default"
                         android:layout_weight="1"
-                        android:background="@drawable/input_bg_border"
+                        android:background="@drawable/input_bg_border_selector"
                         android:entries="@array/categories" />
                 </LinearLayout>
                 <!--
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_height"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_big"
                 android:orientation="horizontal">
 
                 <TextView
@@ -135,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_height"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_big"
                 android:orientation="horizontal">
 
                 <TextView
@@ -160,7 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_height"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_big"
                 android:orientation="horizontal">
 
                 <TextView
@@ -185,7 +185,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_big"
                 android:minHeight="80dp"
                 android:orientation="horizontal">
 
@@ -212,7 +212,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_big"
                 android:orientation="horizontal">
 
                 <mehdi.sakout.fancybuttons.FancyButton xmlns:fb="http://schemas.android.com/apk/res-auto"

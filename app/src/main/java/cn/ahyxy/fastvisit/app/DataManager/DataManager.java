@@ -11,19 +11,24 @@ import org.xutils.x;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import cn.ahyxy.fastvisit.app.DataManager.parameter.AdvancedPOSParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.AllUserParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.CommitOrderParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.CreateOutletParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOrderListParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOutletCategoriesParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOutletListParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.GetProductListParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.HotProductsParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchHotParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchResultParam;
 import cn.ahyxy.fastvisit.app.bean.HotProductBean;
 import cn.ahyxy.fastvisit.app.bean.POSBean;
 import cn.ahyxy.fastvisit.app.bean.OutletCategoryBean;
+import cn.ahyxy.fastvisit.app.bean.ProductBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 
@@ -67,6 +72,21 @@ public class DataManager {
         CreateOutletParam createOutletParam = new CreateOutletParam(dId, cateOne, cateTwo, tX, tY, id, name, address, contactName, tel, remark);
         LogUtil.d("createOutlet dId:" + dId);
         x.http().post(createOutletParam, baseCallBackJsonObject);
+    }
+
+    public static void getProductList(String dId, BaseCallBackJsonArray baseCallBackJsonArray) {
+        GetProductListParam param = new GetProductListParam(dId);
+        LogUtil.d("getProductList dId:" + dId);
+        x.http().post(param, baseCallBackJsonArray);
+    }
+
+    public static void commitOrder(HashMap<String, String> map, BaseCallBackJsonObject baseCallBackJsonObject) {
+        x.http().post(new CommitOrderParam(map), baseCallBackJsonObject);
+    }
+
+    public static void getOrderList(String id, BaseCallBackJsonArray baseCallBackJsonArray) {
+        LogUtil.d("getOrderList id:" + id);
+        x.http().post(new GetOrderListParam(id), baseCallBackJsonArray);
     }
 
     public static void getHotProducts(String dId, BaseCallBackJsonArray baseCallBackJsonArray) {
@@ -117,4 +137,11 @@ public class DataManager {
         }
         return list;
     }
+
+    public static List<ProductBean> jsonArrayToProductList(JSONArray result) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<ProductBean>>(){}.getType();
+        return gson.fromJson(result.toString(), type);
+    }
+
 }
