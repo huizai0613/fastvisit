@@ -117,7 +117,7 @@ public class MainFragment extends LsSimpleHomeFragment
             case R.id.ll_pointsearch://网点搜索
                 mActivity.showActivity(mActivity, OutletSearchActivity.class);
                 break;
-            case R.id.ll_pointmanage://网点管理
+            case R.id.ll_pointmanage://巡店管理
                 mActivity.showActivity(mActivity, OutletManageActivity.class);
                 break;
             case R.id.ll_push://推广
@@ -131,13 +131,15 @@ public class MainFragment extends LsSimpleHomeFragment
             case R.id.ll_more://更多
                 ToastUtils.Infotoast(mActivity, "开发升级中......");
                 break;
-            case R.id.main_tab1:
+            case R.id.main_tab1://高级终端
                 mActivity.showActivity(mActivity, AdvancedPOSActivity.class);
                 break;
-            case R.id.main_tab2:
+            case R.id.main_tab2://热销商品
                 mActivity.showActivity(mActivity, HotProductsActivity.class);
                 break;
-            case R.id.main_tab4:
+            case R.id.main_tab3://我的销售
+                break;
+            case R.id.main_tab4://我的备忘录
                 mActivity.showActivity(mActivity, NoteActivity.class);
                 break;
         }

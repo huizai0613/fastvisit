@@ -11,13 +11,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_normal"
             android:orientation="vertical"
             android:padding="@dimen/padding_default">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/default_height"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -41,8 +41,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_height="@dimen/default_height"
+                android:layout_marginTop="@dimen/spacing_normal"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -52,13 +52,28 @@
                     android:layout_height="wrap_content"
                     android:text="@string/category" />
 
-                <Spinner
-                    android:id="@+id/spinner_outlet_categories"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/padding_default"
-                    android:background="@drawable/input_bg_border"
-                    android:entries="@array/categories" />
+                    android:layout_height="match_parent">
+
+                    <Spinner
+                        android:id="@+id/spinner_outlet_categories"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/padding_default"
+                        android:layout_weight="1"
+                        android:background="@drawable/input_bg_border"
+                        android:entries="@array/categories" />
+
+                    <Spinner
+                        android:id="@+id/spinner_outlet_sub_categories"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/padding_default"
+                        android:layout_weight="1"
+                        android:background="@drawable/input_bg_border"
+                        android:entries="@array/categories" />
+                </LinearLayout>
                 <!--
                 <RadioGroup
                     android:id="@+id/rg_outlet_category"
@@ -93,9 +108,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/default_height"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_normal"
                 android:orientation="horizontal">
 
                 <TextView
@@ -118,9 +133,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/default_height"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_normal"
                 android:orientation="horizontal">
 
                 <TextView
@@ -143,9 +158,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="@dimen/default_height"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_normal"
                 android:orientation="horizontal">
 
                 <TextView
@@ -161,17 +176,17 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/padding_default"
                     android:hint="@string/please_input_phone_number"
+                    android:inputType="phone"
                     android:paddingLeft="@dimen/padding_default"
-                    android:paddingRight="@dimen/padding_default"
-                    android:inputType="phone" />
+                    android:paddingRight="@dimen/padding_default" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small"
-                android:minHeight="100dp"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:minHeight="80dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -189,15 +204,15 @@
                     android:layout_marginLeft="@dimen/padding_default"
                     android:gravity="top"
                     android:hint="@string/remark_hint"
-                    android:paddingLeft="@dimen/padding_default"
-                    android:paddingRight="@dimen/padding_default" />
+                    android:padding="@dimen/padding_default" />
+
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginTop="@dimen/spacing_big"
+                android:layout_marginTop="@dimen/spacing_normal"
                 android:orientation="horizontal">
 
                 <mehdi.sakout.fancybuttons.FancyButton xmlns:fb="http://schemas.android.com/apk/res-auto"
@@ -206,11 +221,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/spacing_small"
                     android:layout_weight="1"
-                    fb:radius="5dp"
                     fb:fb_defaultColor="@color/but_orange_normal"
                     fb:fb_focusColor="@color/but_orange_press"
                     fb:fb_text="@string/outlet_save_and_quit"
-                    fb:fb_textColor="@color/white" />
+                    fb:fb_textColor="@color/white"
+                    fb:fb_textSize="@dimen/font_default"
+                    fb:radius="5dp" />
 
                 <mehdi.sakout.fancybuttons.FancyButton xmlns:fb="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/btn_outlet_next"
@@ -218,10 +234,10 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/spacing_small"
                     android:layout_weight="1"
-                    fb:radius="5dp"
                     fb:fb_defaultColor="#23B6EC"
                     fb:fb_text="@string/outlet_next"
-                    fb:fb_textColor="@color/white" />
+                    fb:fb_textColor="@color/white"
+                    fb:radius="5dp" />
 
             </LinearLayout>
 

@@ -20,7 +20,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
-import org.xutils.common.util.LogUtil;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -86,21 +85,23 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
 
     private void onSearchAction(String keyword) {
         showWaitDialog(getString(R.string.error_view_loading));
-        DataManager.getOutletSearchResult(String.valueOf(UserManager.getUserBean().getId()), keyword, new BaseCallBackJsonArray(getContext()) {
-            @Override
-            public void onErrorJson(Throwable ex, boolean isOnCallback) {
-                hideWaitDialog();
-            }
+        DataManager.getOutletSearchResult(String.valueOf(UserManager.getUserBean().getId()),
+                String.valueOf(UserManager.getUserBean().getD_id()), keyword,
+                new BaseCallBackJsonArray(getContext()) {
+                    @Override
+                    public void onErrorJson(Throwable ex, boolean isOnCallback) {
+                        hideWaitDialog();
+                    }
 
-            @Override
-            public void onSuccessJsonArray(JSONArray result) {
-                hideWaitDialog();
-                if (resultAdapter != null) {
-                    resultAdapter.setData(DataManager.jsonArrayToPOSBeanList(result));
-                    showResultLayout(true);
-                }
-            }
-        });
+                    @Override
+                    public void onSuccessJsonArray(JSONArray result) {
+                        hideWaitDialog();
+                        if (resultAdapter != null) {
+                            resultAdapter.setData(DataManager.jsonArrayToPOSBeanList(result));
+                            showResultLayout(true);
+                        }
+                    }
+                });
     }
 
     private void showResultLayout(boolean isShow) {
@@ -220,7 +221,7 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
             if (convertView == null) {
-                convertView = View.inflate(parent.getContext(), R.layout.list_item_outllet_search_result, null);
+                convertView = View.inflate(parent.getContext(), R.layout.list_item_outlet_search_result, null);
                 holder = new ViewHolder(convertView);
                 convertView.setTag(holder);
             } else {
@@ -228,7 +229,7 @@ public class OutletSearchFragment extends BaseFragment implements TextView.OnEdi
             }
             POSBean posBean = getItem(position);
             holder.name.setText(posBean.getT_name());
-            holder.category.setText(String.valueOf(posBean.getCate_two()));
+            holder.category.setText(posBean.getCate_name());
             holder.address.setText(posBean.getT_address());
             holder.contact.setText(posBean.getContact_name());
             holder.phoneNumber.setText(posBean.getContact_tel());

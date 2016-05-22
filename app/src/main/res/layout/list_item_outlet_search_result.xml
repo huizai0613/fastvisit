@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/iv_outlet_search_result_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:src="@mipmap/ic_launcher" />
+        android:layout_width="@dimen/size_big"
+        android:layout_height="@dimen/size_big"
+        android:src="@drawable/icon_outlet" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_outlet_search_result_title"
+            android:layout_marginRight="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_tiny"
             android:orientation="vertical">
 
@@ -96,10 +97,11 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/iv_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            tools:src="@mipmap/ic_launcher" />
+            android:src="@drawable/icon_arrow" />
     </RelativeLayout>
 </LinearLayout>

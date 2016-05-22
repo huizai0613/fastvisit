@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -37,11 +38,13 @@ import cn.ahyxy.fastvisit.baseui.BaseFragment;
 import cn.ahyxy.fastvisit.utils.StringUtils;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 
-public class OutletCreateFragment extends BaseFragment {
+public class OutletCreateFragment extends BaseFragment implements AdapterView.OnItemSelectedListener {
     @ViewInject(R.id.edt_outlet_name)
     private EditText nameEditText;
     @ViewInject(R.id.spinner_outlet_categories)
-    private Spinner categoriesSpinner;
+    private Spinner mainCategoriesSpinner;
+    @ViewInject(R.id.spinner_outlet_sub_categories)
+    private Spinner subCategoriesSpinner;
     @ViewInject(R.id.edt_outlet_address)
     private EditText addressEditText;
     @ViewInject(R.id.edt_outlet_contact)
@@ -51,7 +54,9 @@ public class OutletCreateFragment extends BaseFragment {
     @ViewInject(R.id.edt_outlet_remark)
     private EditText remarkEditText;
 
-    private MyArrayAdapter myArrayAdapter;
+    private List<OutletCategoryBean> outletCategoryBeanList = new ArrayList<>();
+    private MyArrayAdapter mainCategoryArrayAdapter;
+    private MyArrayAdapter subCategoryArrayAdapter;
 
     public OutletCreateFragment() {
         // Required empty public constructor
@@ -70,9 +75,13 @@ public class OutletCreateFragment extends BaseFragment {
         initLocation();
         mLocationClient.start();
 
-        myArrayAdapter = new MyArrayAdapter(getContext(), android.R.layout.simple_spinner_item);
-        myArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categoriesSpinner.setAdapter(myArrayAdapter);
+        mainCategoryArrayAdapter = new MyArrayAdapter(getContext(), android.R.layout.simple_spinner_item);
+        mainCategoryArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mainCategoriesSpinner.setAdapter(mainCategoryArrayAdapter);
+        mainCategoriesSpinner.setOnItemSelectedListener(this);
+        subCategoryArrayAdapter = new MyArrayAdapter(getContext(), android.R.layout.simple_spinner_item);
+        subCategoryArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        subCategoriesSpinner.setAdapter(subCategoryArrayAdapter);
         getCategoriesFromServer();
     }
 
@@ -84,7 +93,10 @@ public class OutletCreateFragment extends BaseFragment {
                     @Override
                     public void onSuccessJsonArray(JSONArray result) {
                         hideWaitDialog();
-                        myArrayAdapter.setData(DataManager.jsonArrayToPOSCategoryList(result));
+                        outletCategoryBeanList = DataManager.jsonArrayToPOSCategoryList(result);
+                        mainCategoryArrayAdapter.setData(outletCategoryBeanList, OutletCategoryBean.MAIN_CATEGORY_P_ID);
+                        int position = mainCategoriesSpinner.getSelectedItemPosition();
+                        updateSubCategoriesSpinner(position);
                     }
 
                     @Override
@@ -122,29 +134,46 @@ public class OutletCreateFragment extends BaseFragment {
             nameEditText.setError(errorStr);
             return;
         }
-        int position = categoriesSpinner.getSelectedItemPosition();
-        LogUtil.d("position:" + position);
-        OutletCategoryBean bean = myArrayAdapter.getMyItem(position);
+
+        String cateOne = "";
+        int mainPosition = mainCategoriesSpinner.getSelectedItemPosition();
+        LogUtil.d("position:" + mainPosition);
+        OutletCategoryBean mainBean = mainCategoryArrayAdapter.getMyItem(mainPosition);
+        if (mainBean != null) {
+            cateOne = String.valueOf(mainBean.getId());
+        }
+        String cateTwo = "";
+        int subPosition = subCategoriesSpinner.getSelectedItemPosition();
+        LogUtil.d("subPosition:" + subPosition);
+        OutletCategoryBean subBean = subCategoryArrayAdapter.getMyItem(subPosition);
+        if (subBean != null) {
+            cateTwo = String.valueOf(subBean.getId());
+        }
+        LogUtil.d("cateOne:" + cateOne + ", cateTwo:" + cateTwo);
+
         String address = addressEditText.getText().toString();
         if (TextUtils.isEmpty(address)) {
             addressEditText.setError(errorStr);
             ToastUtils.Errortoast(getContext(), getString(R.string.location_failed));
             return;
         }
+
         String contact = contactEditText.getText().toString();
         if (TextUtils.isEmpty(contact)) {
             contactEditText.setError(errorStr);
             return;
         }
-        String phoneNumber = contactEditText.getText().toString();
+
+        String phoneNumber = phoneNumberEditText.getText().toString();
         if (TextUtils.isEmpty(phoneNumber)) {
             phoneNumberEditText.setError(errorStr);
             return;
         }
+
         String remark = remarkEditText.getText().toString();
         showWaitDialog(getString(R.string.error_view_loading));
-        DataManager.createOutlet(String.valueOf(UserManager.getUserBean().getD_id()), String.valueOf(bean.getP_id()),
-                String.valueOf(bean.getId()), String.valueOf(bdLocation.getLongitude()), String.valueOf(bdLocation.getLatitude()),
+        DataManager.createOutlet(String.valueOf(UserManager.getUserBean().getD_id()), cateOne, cateTwo,
+                String.valueOf(bdLocation.getLongitude()), String.valueOf(bdLocation.getLatitude()),
                 String.valueOf(UserManager.getUserBean().getId()), name, address, contact, phoneNumber, remark,
                 new BaseCallBackJsonObject(getContext()) {
 
@@ -152,7 +181,8 @@ public class OutletCreateFragment extends BaseFragment {
                     public void onSuccessJsonObject(JSONObject result) {
                         hideWaitDialog();
                         if (getContext() != null) {
-                            ToastUtils.Errortoast(getContext(), getString(R.string.create_success));
+                            ToastUtils.Infotoast(getContext(), getString(R.string.create_success));
+                            getActivity().finish();
                         }
                     }
 
@@ -163,6 +193,24 @@ public class OutletCreateFragment extends BaseFragment {
                 });
     }
 
+    private void updateSubCategoriesSpinner(int mainPosition) {
+        LogUtil.d("position:" + mainPosition);
+        OutletCategoryBean bean = mainCategoryArrayAdapter.getMyItem(mainPosition);
+        subCategoryArrayAdapter.setData(outletCategoryBeanList, bean.getId());
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent == mainCategoriesSpinner) {
+            updateSubCategoriesSpinner(position);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
     private static class MyArrayAdapter extends ArrayAdapter<String> {
         private List<OutletCategoryBean> list = new ArrayList<>();
 
@@ -170,22 +218,26 @@ public class OutletCreateFragment extends BaseFragment {
             super(context, resource);
         }
 
-        private void setData(List<OutletCategoryBean> list) {
+        private void setData(List<OutletCategoryBean> list, int p_id) {
+            clear();
             if (list == null || list.isEmpty()) {
                 return;
             }
             List<String> strings = new ArrayList<>();
             for (OutletCategoryBean bean : list) {
-//                if (bean.getP_id() == 0) {
-                this.list.add(bean);
-                strings.add(bean.getCate_name());
-//                }
+                if (bean.getP_id() == p_id) {
+                    this.list.add(bean);
+                    strings.add(bean.getCate_name());
+                }
             }
             addAll(strings);
         }
 
         public OutletCategoryBean getMyItem(int position) {
-            return list.get(position);
+            if (0 <= position && position < getCount()) {
+                return list.get(position);
+            }
+            return null;
         }
     }
 

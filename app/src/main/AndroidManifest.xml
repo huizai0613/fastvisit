@@ -94,6 +94,7 @@
 
         <activity
             android:name=".app.ui.OutletCreateActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:screenOrientation="portrait" />
         <activity
             android:name=".app.ui.OrderManageActivity"

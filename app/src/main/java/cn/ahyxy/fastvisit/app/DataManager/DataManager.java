@@ -1,11 +1,15 @@
 package cn.ahyxy.fastvisit.app.DataManager;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +17,11 @@ import cn.ahyxy.fastvisit.app.DataManager.parameter.AdvancedPOSParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.AllUserParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.CreateOutletParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOutletCategoriesParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOutletListParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.HotProductsParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchHotParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchResultParam;
+import cn.ahyxy.fastvisit.app.bean.HotProductBean;
 import cn.ahyxy.fastvisit.app.bean.POSBean;
 import cn.ahyxy.fastvisit.app.bean.OutletCategoryBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
@@ -39,9 +46,14 @@ public class DataManager {
         x.http().post(new OutletSearchHotParam(id), baseCallBackJsonArray);
     }
 
-    public static void getOutletSearchResult(String id, String keyword, BaseCallBackJsonArray baseCallBackJsonArray) {
-        LogUtil.d("getOutletSearchResult id:" + id + ", keyword:" + keyword);
-        x.http().post(new OutletSearchResultParam(id, keyword), baseCallBackJsonArray);
+    public static void getOutletSearchResult(String id, String dId, String keyword, BaseCallBackJsonArray baseCallBackJsonArray) {
+        LogUtil.d("getOutletSearchResult id:" + id + ", dId:" + dId + ", keyword:" + keyword);
+        x.http().post(new OutletSearchResultParam(id, dId, keyword), baseCallBackJsonArray);
+    }
+
+    public static void getOutletList(String id, BaseCallBackJsonArray baseCallBackJsonArray) {
+        LogUtil.d("getOutletList id:" + id);
+        x.http().post(new GetOutletListParam(id), baseCallBackJsonArray);
     }
 
     public static void getOutletCategories(String dId, BaseCallBackJsonArray baseCallBackJsonArray) {
@@ -53,33 +65,23 @@ public class DataManager {
                                     String name, String address, String contactName, String tel, String remark,
                                     BaseCallBackJsonObject baseCallBackJsonObject) {
         CreateOutletParam createOutletParam = new CreateOutletParam(dId, cateOne, cateTwo, tX, tY, id, name, address, contactName, tel, remark);
-        LogUtil.d("createOutlet :" + createOutletParam.toString());
+        LogUtil.d("createOutlet dId:" + dId);
         x.http().post(createOutletParam, baseCallBackJsonObject);
     }
 
+    public static void getHotProducts(String dId, BaseCallBackJsonArray baseCallBackJsonArray) {
+        HotProductsParam hotProductsParam = new HotProductsParam(dId);
+        LogUtil.d("getHotProducts dId:" + dId);
+        x.http().post(hotProductsParam, baseCallBackJsonArray);
+    }
+
     public static List<POSBean> jsonArrayToPOSBeanList(JSONArray result) {
-        List<POSBean> posBeanList = new ArrayList<>();
-        int length = result.length();
-        try {
-            for (int i = 0; i < length; i++) {
-                POSBean posBean = new POSBean();
-                JSONObject jsonObject = result.getJSONObject(i);
-                posBean.setT_name(jsonObject.getString("t_name"));
-                posBean.setT_address(jsonObject.getString("t_address"));
-                posBean.setCate_one(jsonObject.getInt("cate_one"));
-                posBean.setT_level(jsonObject.getInt("t_level"));
-                posBean.setContact_name(jsonObject.getString("contact_name"));
-                posBean.setContact_tel(jsonObject.getString("contact_tel"));
-                posBeanList.add(posBean);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return posBeanList;
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<POSBean>>(){}.getType();
+        return gson.fromJson(result.toString(), type);
     }
 
     public static List<OutletCategoryBean> jsonArrayToPOSCategoryList(JSONArray result) {
-
         List<OutletCategoryBean> list = new ArrayList<>();
         int length = result.length();
         try {
@@ -90,6 +92,24 @@ public class DataManager {
                 bean.setD_id(object.getInt("d_id"));
                 bean.setP_id(object.getInt("p_id"));
                 bean.setCate_name(object.getString("cate_name"));
+                list.add(bean);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static List<HotProductBean> jsonArrayToHotProductList(JSONArray result) {
+        List<HotProductBean> list = new ArrayList<>();
+        int length = result.length();
+        try {
+            for (int i = 0; i < length; i++) {
+                HotProductBean bean = new HotProductBean();
+                JSONObject object = result.getJSONObject(i);
+                bean.setPercent((float) object.getDouble("percent"));
+                bean.setColor(object.getString("color"));
+                bean.setName(object.getString("name"));
                 list.add(bean);
             }
         } catch (JSONException e) {

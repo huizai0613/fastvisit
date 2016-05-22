@@ -4,4 +4,13 @@
     android:layout_height="match_parent"
     tools:context="cn.ahyxy.fastvisit.app.ui.fragment.OutletManageFragment">
 
+    <ListView
+        android:id="@+id/lv_outlet_manage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/group_list_liner"
+        android:dividerHeight="@dimen/size_small"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
 </FrameLayout>

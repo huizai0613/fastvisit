@@ -10,7 +10,7 @@ public class OutletCategoryBean {
      * p_id : 0
      * d_id : 1
      */
-
+    public static int MAIN_CATEGORY_P_ID = 0;
     private int id;
     private String cate_name;
     private int p_id;

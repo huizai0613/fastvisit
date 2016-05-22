@@ -4,4 +4,9 @@
     android:layout_height="match_parent"
     tools:context="cn.ahyxy.fastvisit.app.ui.fragment.HotProductsFragment">
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pc_hot_products"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="center_horizontal" />
 </FrameLayout>

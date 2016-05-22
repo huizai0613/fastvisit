@@ -11,8 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -134,7 +132,7 @@ public class AdvancedPOSFragment extends BaseFragment {
             public ViewHolder(View view) {
                 name = (TextView) view.findViewById(R.id.tv_advanced_pos_name);
                 star = (ImageView) view.findViewById(R.id.iv_advanced_pos_star);
-                address = (TextView) view.findViewById(R.id.tv_advanced_pos_address);
+                address = (TextView) view.findViewById(R.id.tv_outlet_address);
             }
         }
     }

@@ -52,6 +52,11 @@ public class POSBean {
     private int t_level;
     private String t_remark;
     private int createtime;
+    /**
+     * cate_name : KA
+     */
+
+    private String cate_name;
 
     public int getId() {
         return id;
@@ -227,5 +232,13 @@ public class POSBean {
 
     public void setCreatetime(int createtime) {
         this.createtime = createtime;
+    }
+
+    public String getCate_name() {
+        return cate_name;
+    }
+
+    public void setCate_name(String cate_name) {
+        this.cate_name = cate_name;
     }
 }
