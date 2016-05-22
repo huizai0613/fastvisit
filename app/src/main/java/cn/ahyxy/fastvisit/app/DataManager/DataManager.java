@@ -25,10 +25,12 @@ import cn.ahyxy.fastvisit.app.DataManager.parameter.GetProductListParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.HotProductsParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchHotParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchResultParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.TaskBrandParam;
 import cn.ahyxy.fastvisit.app.bean.HotProductBean;
 import cn.ahyxy.fastvisit.app.bean.POSBean;
 import cn.ahyxy.fastvisit.app.bean.OutletCategoryBean;
 import cn.ahyxy.fastvisit.app.bean.ProductBean;
+import cn.ahyxy.fastvisit.app.bean.TaskBrandBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
 
@@ -95,6 +97,12 @@ public class DataManager {
         x.http().post(hotProductsParam, baseCallBackJsonArray);
     }
 
+    public static void getTaskBrandList(String id, BaseCallBackJsonArray baseCallBackJsonArray) {
+        TaskBrandParam taskBrandParam = new TaskBrandParam(id);
+        LogUtil.d("getTaskBrandList id:" + id);
+        x.http().post(taskBrandParam, baseCallBackJsonArray);
+    }
+
     public static List<POSBean> jsonArrayToPOSBeanList(JSONArray result) {
         Gson gson = new Gson();
         Type type = new TypeToken<List<POSBean>>(){}.getType();
@@ -141,6 +149,12 @@ public class DataManager {
     public static List<ProductBean> jsonArrayToProductList(JSONArray result) {
         Gson gson = new Gson();
         Type type = new TypeToken<List<ProductBean>>(){}.getType();
+        return gson.fromJson(result.toString(), type);
+    }
+
+    public static List<TaskBrandBean> jsonArrayToTaskBrandList(JSONArray result) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<TaskBrandBean>>(){}.getType();
         return gson.fromJson(result.toString(), type);
     }
 

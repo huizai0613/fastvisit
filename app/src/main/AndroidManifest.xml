@@ -117,6 +117,9 @@
         <activity
             android:name=".app.ui.ProductListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.ui.TaskBrandActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

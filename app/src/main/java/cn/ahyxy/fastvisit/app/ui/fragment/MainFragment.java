@@ -25,6 +25,7 @@ import cn.ahyxy.fastvisit.app.ui.PayCardActivity;
 import cn.ahyxy.fastvisit.app.ui.PublicActivity;
 import cn.ahyxy.fastvisit.app.ui.PushActivity;
 import cn.ahyxy.fastvisit.app.ui.OutletSearchActivity;
+import cn.ahyxy.fastvisit.app.ui.TaskBrandActivity;
 import cn.ahyxy.fastvisit.baseui.LsSimpleHomeFragment;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 
@@ -121,7 +122,8 @@ public class MainFragment extends LsSimpleHomeFragment
                 mActivity.showActivity(mActivity, OutletManageActivity.class);
                 break;
             case R.id.ll_push://推广
-                mActivity.showActivity(mActivity, PushActivity.class);
+//                mActivity.showActivity(mActivity, PushActivity.class);
+                mActivity.showActivity(mActivity, TaskBrandActivity.class);
                 break;
             case R.id.ll_public://公告
                 mActivity.showActivity(mActivity, PublicActivity.class);

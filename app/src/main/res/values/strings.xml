@@ -34,6 +34,9 @@
     <string name="outlet_next">下一步</string>
     <string name="create_success">创建成功</string>
 
+    <!-- task brand -->
+    <string name="task_brand">品牌推广</string>
+
     <!-- product list -->
     <string name="select_product">选择商品</string>
     <string name="product_price">零售价：</string>
