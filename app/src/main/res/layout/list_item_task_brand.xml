@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="@dimen/spacing_small">
+    android:paddingLeft="@dimen/spacing_small"
+    android:paddingTop="@dimen/spacing_small"
+    android:paddingBottom="@dimen/spacing_small">
 
     <ImageView
         android:id="@+id/iv_task_brand_icon"
@@ -38,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_task_brand_title"
-            android:layout_marginRight="@dimen/spacing_large"
+            android:layout_marginRight="@dimen/spacing_bigger"
             android:layout_marginTop="@dimen/spacing_tiny"
             android:orientation="vertical">
 

@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_product_title"
-        android:layout_marginRight="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_bigger"
         android:layout_marginTop="@dimen/spacing_small"
         android:orientation="horizontal">
 

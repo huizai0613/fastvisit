@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ll_outlet_search_result_title"
-            android:layout_marginRight="@dimen/spacing_large"
+            android:layout_marginRight="@dimen/spacing_bigger"
             android:layout_marginTop="@dimen/spacing_tiny"
             android:orientation="vertical">
 

@@ -66,7 +66,7 @@ public class TaskBrandFragment extends BaseFragment {
     }
     private static abstract class BaseTaskBrandAdapter extends BaseAdapter {
         private List<TaskBrandBean> list = new ArrayList<>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         public void setData(List<TaskBrandBean> list) {
             this.list.clear();
@@ -108,7 +108,7 @@ public class TaskBrandFragment extends BaseFragment {
             holder.subject.setText(taskBrandBean.getSubject());
             Date startDate = new Date(taskBrandBean.getStart_time() * 1000l);
             Date endDate = new Date(taskBrandBean.getEnd_time() * 1000l);
-            holder.time.setText(dateFormat.format(startDate) + "-" + dateFormat.format(endDate));
+            holder.time.setText(dateFormat.format(startDate) + "——" + dateFormat.format(endDate));
 
             return convertView;
         }
