@@ -71,6 +71,20 @@
 
     <!-- note -->
     <string name="note">备忘录</string>
+    <string name="content">内容：</string>
+    <string name="time">时间：</string>
+    <string name="add_new_note">添加新备忘录</string>
+    <string name="subject">主题：</string>
+    <string name="save">保存</string>
+    <string name="saving">正在保存…</string>
+    <string name="save_success">保存成功</string>
+
+    <!-- diary -->
+    <string name="diary">工作日记</string>
+    <string name="problem">问题：</string>
+    <string name="profited">心得：</string>
+    <string name="plan">计划：</string>
+    <string name="add_new_diary">添加新工作日记</string>
 
     <!-- hot products -->
     <string name="hot_products">热销商品</string>

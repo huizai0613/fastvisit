@@ -1,0 +1,102 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.ahyxy.fastvisit.app.ui.fragment.AddNewNoteFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_big">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/content_text_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/problem" />
+
+            <EditText
+                android:id="@+id/edt_diary_problem"
+                style="@style/content_edit_single_line_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:paddingLeft="@dimen/padding_default"
+                android:paddingRight="@dimen/padding_default" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_large"
+            android:layout_marginTop="@dimen/spacing_big"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/content_text_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingTop="@dimen/spacing_tiny"
+                android:text="@string/profited" />
+
+            <EditText
+                android:id="@+id/edt_diary_profited"
+                style="@style/content_edit_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:gravity="start"
+                android:padding="@dimen/padding_default"
+                tools:text="@string/app_name" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_large"
+            android:layout_marginTop="@dimen/spacing_big"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/content_text_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingTop="@dimen/spacing_tiny"
+                android:text="@string/plan" />
+
+            <EditText
+                android:id="@+id/edt_diary_plan"
+                style="@style/content_edit_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_default"
+                android:gravity="start"
+                android:padding="@dimen/padding_default"
+                tools:text="@string/app_name" />
+
+        </LinearLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton xmlns:fb="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/btn_diary_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            fb:fb_borderColor="#ff838b"
+            fb:fb_borderWidth="1dp"
+            fb:fb_defaultColor="@color/but_orange_normal"
+            fb:fb_focusColor="@color/but_orange_press"
+            fb:fb_text="@string/save"
+            fb:fb_textColor="@color/white"
+            fb:radius="@dimen/size_tiny" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,7 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="cn.ahyxy.fastvisit.app.ui.fragment.NoteFragment">
 
-</FrameLayout>
+    <mehdi.sakout.fancybuttons.FancyButton xmlns:fb="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/btn_add_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/spacing_normal"
+        fb:fb_borderColor="#CECECE"
+        fb:fb_borderWidth="1dp"
+        fb:fb_defaultColor="@color/but_white_unpress"
+        fb:fb_focusColor="@color/but_white_press"
+        fb:fb_text="@string/add_new_note"
+        fb:fb_textColor="@color/black"
+        fb:fb_textSize="@dimen/font_default"
+        fb:radius="5dp" />
+
+    <ListView
+        android:id="@+id/lv_note"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_add_new"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/group_list_liner"
+        android:dividerHeight="@dimen/size_min"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+</RelativeLayout>

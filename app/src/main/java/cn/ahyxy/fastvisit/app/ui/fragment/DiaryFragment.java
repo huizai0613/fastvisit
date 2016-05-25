@@ -23,17 +23,20 @@ import java.util.List;
 import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.app.DataManager.DataManager;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
-import cn.ahyxy.fastvisit.app.bean.NoteBean;
-import cn.ahyxy.fastvisit.app.ui.AddNewNoteActivity;
+import cn.ahyxy.fastvisit.app.bean.DiaryBean;
+import cn.ahyxy.fastvisit.app.ui.AddNewDiaryActivity;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
 import cn.ahyxy.fastvisit.baseui.BaseFragment;
+import mehdi.sakout.fancybuttons.FancyButton;
 
-public class NoteFragment extends BaseFragment {
+public class DiaryFragment extends BaseFragment {
     @ViewInject(R.id.lv_note)
     private ListView listView;
+    @ViewInject(R.id.btn_add_new)
+    private FancyButton addButton;
     private ResultAdapter resultAdapter;
 
-    public NoteFragment() {
+    public DiaryFragment() {
         // Required empty public constructor
     }
 
@@ -47,12 +50,13 @@ public class NoteFragment extends BaseFragment {
         super.initWidget(parentView);
         resultAdapter = new ResultAdapter();
         listView.setAdapter(resultAdapter);
+        addButton.setText(getString(R.string.add_new_diary));
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getNoteList();
+        getDiaryList();
     }
 
     @Event(value = {R.id.btn_add_new})
@@ -60,15 +64,15 @@ public class NoteFragment extends BaseFragment {
         int id = v.getId();
         switch (id) {
             case R.id.btn_add_new:
-                Intent intent = new Intent(getContext(), AddNewNoteActivity.class);
+                Intent intent = new Intent(getContext(), AddNewDiaryActivity.class);
                 startActivity(intent);
                 break;
         }
     }
 
-    private void getNoteList() {
+    private void getDiaryList() {
         showWaitDialog(getString(R.string.error_view_loading));
-        DataManager.getNoteList(String.valueOf(UserManager.getUserBean().getId()),
+        DataManager.getDiaryList(String.valueOf(UserManager.getUserBean().getId()),
                 new BaseCallBackJsonArray(getContext()) {
                     @Override
                     public void onErrorJson(Throwable ex, boolean isOnCallback) {
@@ -78,16 +82,16 @@ public class NoteFragment extends BaseFragment {
                     @Override
                     public void onSuccessJsonArray(JSONArray result) {
                         hideWaitDialog();
-                        resultAdapter.setData(DataManager.jsonArrayToNoteList(result));
+                        resultAdapter.setData(DataManager.jsonArrayToDiaryList(result));
                     }
                 });
     }
 
     private static abstract class BaseTaskBrandAdapter extends BaseAdapter {
-        private List<NoteBean> list = new ArrayList<>();
+        private List<DiaryBean> list = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-        public void setData(List<NoteBean> list) {
+        public void setData(List<DiaryBean> list) {
             this.list.clear();
             if (list != null) {
                 this.list.addAll(list);
@@ -101,7 +105,7 @@ public class NoteFragment extends BaseFragment {
         }
 
         @Override
-        public NoteBean getItem(int position) {
+        public DiaryBean getItem(int position) {
             return list.get(position);
         }
 
@@ -116,16 +120,17 @@ public class NoteFragment extends BaseFragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
             if (convertView == null) {
-                convertView = View.inflate(parent.getContext(), R.layout.list_item_note, null);
+                convertView = View.inflate(parent.getContext(), R.layout.list_item_diary, null);
                 holder = new ViewHolder(convertView);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            NoteBean NoteBean = getItem(position);
-            holder.title.setText(NoteBean.getTitle());
-            holder.content.setText(NoteBean.getContent());
-            Date date = new Date(NoteBean.getCreatetime() * 1000l);
+            DiaryBean bean = getItem(position);
+            holder.title.setText(bean.getProblem());
+            holder.subtitle.setText(bean.getProfited());
+            holder.content.setText(bean.getPlan());
+            Date date = new Date(bean.getCreatetime() * 1000l);
             holder.time.setText(dateFormat.format(date));
 
             return convertView;
@@ -134,14 +139,16 @@ public class NoteFragment extends BaseFragment {
         private static class ViewHolder {
             CheckBox checkBox;
             TextView title;
+            TextView subtitle;
             TextView content;
             TextView time;
 
             public ViewHolder(View view) {
-                checkBox = (CheckBox) view.findViewById(R.id.cb_note_select);
-                title = (TextView) view.findViewById(R.id.tv_note_title);
-                content = (TextView) view.findViewById(R.id.tv_note_content);
-                time = (TextView) view.findViewById(R.id.tv_note_time);
+                checkBox = (CheckBox) view.findViewById(R.id.cb_select);
+                title = (TextView) view.findViewById(R.id.tv_title);
+                subtitle = (TextView) view.findViewById(R.id.tv_subtitle);
+                content = (TextView) view.findViewById(R.id.tv_content);
+                time = (TextView) view.findViewById(R.id.tv_time);
             }
         }
     }

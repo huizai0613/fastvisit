@@ -5,44 +5,34 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
+    android:paddingBottom="@dimen/spacing_small"
     android:paddingLeft="@dimen/spacing_small"
-    android:paddingTop="@dimen/spacing_small"
-    android:paddingBottom="@dimen/spacing_small">
+    android:paddingTop="@dimen/spacing_small">
 
-    <ImageView
-        android:id="@+id/iv_outlet_search_result_icon"
-        android:layout_width="@dimen/size_big"
-        android:layout_height="@dimen/size_big"
-        android:src="@drawable/icon_outlet" />
+    <CheckBox
+        android:id="@+id/cb_note_select"
+        style="@style/content_radio_btn_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/spacing_small"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/spacing_small">
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/ll_outlet_search_result_title"
+            android:id="@+id/ll_note_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_outlet_search_result_name"
+                android:id="@+id/tv_note_title"
                 style="@style/content_text_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="@string/app_name" />
-
-            <TextView
-                android:id="@+id/tv_outlet_search_result_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_small"
-                android:background="@drawable/bg_orange_corner"
-                android:padding="@dimen/spacing_min"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_small"
                 tools:text="@string/app_name" />
 
         </LinearLayout>
@@ -50,17 +40,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll_outlet_search_result_title"
+            android:layout_below="@+id/ll_note_title"
             android:layout_marginRight="@dimen/spacing_bigger"
             android:layout_marginTop="@dimen/spacing_tiny"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_outlet_search_result_address"
-                style="@style/content_text_subtitle_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="@string/app_name" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -72,28 +55,36 @@
                     style="@style/content_text_subtitle_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/outlet_contact" />
+                    android:text="@string/content" />
 
                 <TextView
-                    android:id="@+id/tv_outlet_search_result_contact"
+                    android:id="@+id/tv_note_content"
                     style="@style/content_text_subtitle_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="@string/app_name" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <TextView
                     style="@style/content_text_subtitle_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/spacing_small"
-                    android:text="@string/outlet_phone_number" />
+                    android:text="@string/time" />
 
                 <TextView
-                    android:id="@+id/tv_outlet_search_result_phone_number"
+                    android:id="@+id/tv_note_time"
                     style="@style/content_text_subtitle_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="@string/app_name" />
+
             </LinearLayout>
 
         </LinearLayout>

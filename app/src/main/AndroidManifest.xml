@@ -120,6 +120,15 @@
         <activity
             android:name=".app.ui.TaskBrandActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.ui.AddNewNoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.ui.DiaryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".app.ui.AddNewDiaryActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

@@ -64,6 +64,7 @@ public class TaskBrandFragment extends BaseFragment {
             }
         });
     }
+
     private static abstract class BaseTaskBrandAdapter extends BaseAdapter {
         private List<TaskBrandBean> list = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");

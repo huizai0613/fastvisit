@@ -17,6 +17,7 @@ import org.xutils.x;
 
 import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.app.ui.AdvancedPOSActivity;
+import cn.ahyxy.fastvisit.app.ui.DiaryActivity;
 import cn.ahyxy.fastvisit.app.ui.HotProductsActivity;
 import cn.ahyxy.fastvisit.app.ui.NoteActivity;
 import cn.ahyxy.fastvisit.app.ui.OutletCreateActivity;
@@ -129,6 +130,7 @@ public class MainFragment extends LsSimpleHomeFragment
                 mActivity.showActivity(mActivity, PublicActivity.class);
                 break;
             case R.id.ll_worknotes://工作日记
+                mActivity.showActivity(mActivity, DiaryActivity.class);
                 break;
             case R.id.ll_more://更多
                 ToastUtils.Infotoast(mActivity, "开发升级中......");

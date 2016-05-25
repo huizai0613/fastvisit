@@ -14,10 +14,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.ahyxy.fastvisit.app.DataManager.parameter.AddNewDiaryParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.AddNewNoteParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.AdvancedPOSParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.AllUserParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.CommitOrderParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.CreateOutletParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.GetDiaryListParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.GetNoteListParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOrderListParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOutletCategoriesParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOutletListParam;
@@ -26,9 +30,11 @@ import cn.ahyxy.fastvisit.app.DataManager.parameter.HotProductsParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchHotParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchResultParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.TaskBrandParam;
+import cn.ahyxy.fastvisit.app.bean.DiaryBean;
 import cn.ahyxy.fastvisit.app.bean.HotProductBean;
-import cn.ahyxy.fastvisit.app.bean.POSBean;
+import cn.ahyxy.fastvisit.app.bean.NoteBean;
 import cn.ahyxy.fastvisit.app.bean.OutletCategoryBean;
+import cn.ahyxy.fastvisit.app.bean.POSBean;
 import cn.ahyxy.fastvisit.app.bean.ProductBean;
 import cn.ahyxy.fastvisit.app.bean.TaskBrandBean;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
@@ -83,6 +89,7 @@ public class DataManager {
     }
 
     public static void commitOrder(HashMap<String, String> map, BaseCallBackJsonObject baseCallBackJsonObject) {
+        LogUtil.d("commitOrder:" + map.toString());
         x.http().post(new CommitOrderParam(map), baseCallBackJsonObject);
     }
 
@@ -103,9 +110,31 @@ public class DataManager {
         x.http().post(taskBrandParam, baseCallBackJsonArray);
     }
 
+    public static void getNoteList(String id, BaseCallBackJsonArray baseCallBackJsonArray) {
+        GetNoteListParam getNoteListParam = new GetNoteListParam(id);
+        LogUtil.d("getNoteList id:" + id);
+        x.http().post(getNoteListParam, baseCallBackJsonArray);
+    }
+
+    public static void addNewNote(HashMap<String, String> map, BaseCallBackJsonObject baseCallBackJsonObject) {
+        LogUtil.d("addNewNote:" + map.toString());
+        x.http().post(new AddNewNoteParam(map), baseCallBackJsonObject);
+    }
+
+    public static void getDiaryList(String id, BaseCallBackJsonArray baseCallBackJsonArray) {
+        LogUtil.d("getDiaryList id:" + id);
+        x.http().post(new GetDiaryListParam(id), baseCallBackJsonArray);
+    }
+
+    public static void addNewDiary(HashMap<String, String> map, BaseCallBackJsonObject baseCallBackJsonObject) {
+        LogUtil.d("addNewDiary:" + map.toString());
+        x.http().post(new AddNewDiaryParam(map), baseCallBackJsonObject);
+    }
+
     public static List<POSBean> jsonArrayToPOSBeanList(JSONArray result) {
         Gson gson = new Gson();
-        Type type = new TypeToken<List<POSBean>>(){}.getType();
+        Type type = new TypeToken<List<POSBean>>() {
+        }.getType();
         return gson.fromJson(result.toString(), type);
     }
 
@@ -148,14 +177,29 @@ public class DataManager {
 
     public static List<ProductBean> jsonArrayToProductList(JSONArray result) {
         Gson gson = new Gson();
-        Type type = new TypeToken<List<ProductBean>>(){}.getType();
+        Type type = new TypeToken<List<ProductBean>>() {
+        }.getType();
         return gson.fromJson(result.toString(), type);
     }
 
     public static List<TaskBrandBean> jsonArrayToTaskBrandList(JSONArray result) {
         Gson gson = new Gson();
-        Type type = new TypeToken<List<TaskBrandBean>>(){}.getType();
+        Type type = new TypeToken<List<TaskBrandBean>>() {
+        }.getType();
         return gson.fromJson(result.toString(), type);
     }
 
+    public static List<NoteBean> jsonArrayToNoteList(JSONArray result) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<NoteBean>>() {
+        }.getType();
+        return gson.fromJson(result.toString(), type);
+    }
+
+    public static List<DiaryBean> jsonArrayToDiaryList(JSONArray result) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<DiaryBean>>() {
+        }.getType();
+        return gson.fromJson(result.toString(), type);
+    }
 }
