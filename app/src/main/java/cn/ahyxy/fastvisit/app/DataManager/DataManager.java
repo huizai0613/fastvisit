@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
@@ -30,6 +31,7 @@ import cn.ahyxy.fastvisit.app.DataManager.parameter.HotProductsParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchHotParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchResultParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.TaskBrandParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.UploadLocationParam;
 import cn.ahyxy.fastvisit.app.bean.DiaryBean;
 import cn.ahyxy.fastvisit.app.bean.HotProductBean;
 import cn.ahyxy.fastvisit.app.bean.NoteBean;
@@ -44,6 +46,11 @@ import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
  * Created by yexiangyu on 16/5/12.
  */
 public class DataManager {
+    public static void uploadLocation(HashMap<String,String> map, Callback.CommonCallback<String> callback) {
+        LogUtil.d("uploadLocation :" + map.toString());
+        x.http().post(new UploadLocationParam(map), callback);
+    }
+
     public static void getAllUser(String dId, String id, BaseCallBackJsonArray baseCallBackJsonArray) {
         LogUtil.d("getAllUser d_id:" + dId + ", id:" + id);
         x.http().post(new AllUserParam(dId, id), baseCallBackJsonArray);
