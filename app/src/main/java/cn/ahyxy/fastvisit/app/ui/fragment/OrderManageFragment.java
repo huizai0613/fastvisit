@@ -73,7 +73,6 @@ public class OrderManageFragment extends BaseFragment {
         }
     }
 
-
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         return inflater.inflate(R.layout.fragment_order_manage, container, false);

@@ -64,6 +64,10 @@
 
     <!-- outlet manage -->
     <string name="outlet_manage">巡店管理</string>
+    <string name="door_manage">门头管理</string>
+    <string name="list_manage">陈列管理</string>
+    <string name="other">其他</string>
+    <string name="manage_detail">管理详情</string>
 
     <!-- advanced POS -->
     <string name="advanced_pos">高级终端</string>

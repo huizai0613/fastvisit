@@ -1,10 +1,12 @@
 package cn.ahyxy.fastvisit.app.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -20,11 +22,12 @@ import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.app.DataManager.DataManager;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.app.bean.POSBean;
+import cn.ahyxy.fastvisit.app.ui.OutletManageDetailActivity;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
 import cn.ahyxy.fastvisit.baseui.BaseFragment;
 import cn.ahyxy.fastvisit.utils.ToastUtils;
 
-public class AdvancedPOSFragment extends BaseFragment {
+public class AdvancedPOSFragment extends BaseFragment implements AdapterView.OnItemClickListener {
 
     @ViewInject(R.id.lv_advanced_pos)
     private ListView listView;
@@ -44,6 +47,7 @@ public class AdvancedPOSFragment extends BaseFragment {
         super.initWidget(parentView);
         myAdapter = new MyAdapter();
         listView.setAdapter(myAdapter);
+        listView.setOnItemClickListener(this);
         getPOSList();
     }
 
@@ -77,6 +81,20 @@ public class AdvancedPOSFragment extends BaseFragment {
     private static int[] starResIDs = new int[]{R.drawable.star6, R.drawable.star0_5, R.drawable.star1,
             R.drawable.star1_5, R.drawable.star2, R.drawable.star2_5, R.drawable.star3, R.drawable.star3_5,
             R.drawable.star4, R.drawable.star4_5, R.drawable.star5};
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        POSBean bean = myAdapter.getItem(position);
+        Bundle bundle = new Bundle();
+        bundle.putString("cate_id", String.valueOf(bean.getCate_one()));
+        bundle.putString("t_id", String.valueOf(bean.getId()));
+        bundle.putString("t_name", bean.getT_name());
+        bundle.putString("t_address", bean.getT_address());
+        bundle.putString("cate_name", bean.getCate_name());
+        Intent intent = new Intent(getActivity(), OutletManageDetailActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
     private static class MyAdapter extends BaseAdapter {
         private List<POSBean> list = new ArrayList<>();

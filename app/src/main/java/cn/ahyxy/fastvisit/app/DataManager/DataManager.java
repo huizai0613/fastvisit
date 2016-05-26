@@ -27,6 +27,7 @@ import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOrderListParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOutletCategoriesParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.GetOutletListParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.GetProductListParam;
+import cn.ahyxy.fastvisit.app.DataManager.parameter.GetTerminalCommodityParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.HotProductsParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchHotParam;
 import cn.ahyxy.fastvisit.app.DataManager.parameter.OutletSearchResultParam;
@@ -36,6 +37,7 @@ import cn.ahyxy.fastvisit.app.bean.DiaryBean;
 import cn.ahyxy.fastvisit.app.bean.HotProductBean;
 import cn.ahyxy.fastvisit.app.bean.NoteBean;
 import cn.ahyxy.fastvisit.app.bean.OutletCategoryBean;
+import cn.ahyxy.fastvisit.app.bean.OutletCommodityBean;
 import cn.ahyxy.fastvisit.app.bean.POSBean;
 import cn.ahyxy.fastvisit.app.bean.ProductBean;
 import cn.ahyxy.fastvisit.app.bean.TaskBrandBean;
@@ -46,7 +48,7 @@ import cn.ahyxy.fastvisit.base.BaseCallBackJsonObject;
  * Created by yexiangyu on 16/5/12.
  */
 public class DataManager {
-    public static void uploadLocation(HashMap<String,String> map, Callback.CommonCallback<String> callback) {
+    public static void uploadLocation(HashMap<String, String> map, Callback.CommonCallback<String> callback) {
         LogUtil.d("uploadLocation :" + map.toString());
         x.http().post(new UploadLocationParam(map), callback);
     }
@@ -115,6 +117,11 @@ public class DataManager {
         TaskBrandParam taskBrandParam = new TaskBrandParam(id);
         LogUtil.d("getTaskBrandList id:" + id);
         x.http().post(taskBrandParam, baseCallBackJsonArray);
+    }
+
+    public static void getTerminalCommodity(String dId, String tId, BaseCallBackJsonArray baseCallBackJsonArray) {
+        LogUtil.d("getTerminalCommodity dId:" + dId + ", tId:" + tId);
+        x.http().post(new GetTerminalCommodityParam(dId, tId), baseCallBackJsonArray);
     }
 
     public static void getNoteList(String id, BaseCallBackJsonArray baseCallBackJsonArray) {
@@ -206,6 +213,13 @@ public class DataManager {
     public static List<DiaryBean> jsonArrayToDiaryList(JSONArray result) {
         Gson gson = new Gson();
         Type type = new TypeToken<List<DiaryBean>>() {
+        }.getType();
+        return gson.fromJson(result.toString(), type);
+    }
+
+    public static List<OutletCommodityBean> jsonArrayToOutletCommodityList(JSONArray result) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<OutletCommodityBean>>() {
         }.getType();
         return gson.fromJson(result.toString(), type);
     }

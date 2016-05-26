@@ -65,6 +65,11 @@ public class OutletCreateFragment extends BaseFragment implements AdapterView.On
     }
 
     @Override
+    protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+        return inflater.inflate(R.layout.fragment_outlet_create, container, false);
+    }
+
+    @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         TelephonyManager tMgr = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
@@ -118,11 +123,6 @@ public class OutletCreateFragment extends BaseFragment implements AdapterView.On
                         hideWaitDialog();
                     }
                 });
-    }
-
-    @Override
-    protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        return inflater.inflate(R.layout.fragment_outlet_create, container, false);
     }
 
     @Event(value = {R.id.btn_outlet_save, R.id.btn_outlet_next})

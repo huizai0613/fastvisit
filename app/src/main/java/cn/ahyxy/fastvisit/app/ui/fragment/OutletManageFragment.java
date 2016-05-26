@@ -1,6 +1,7 @@
 package cn.ahyxy.fastvisit.app.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import cn.ahyxy.fastvisit.R;
 import cn.ahyxy.fastvisit.app.DataManager.DataManager;
 import cn.ahyxy.fastvisit.app.DataManager.UserManager;
 import cn.ahyxy.fastvisit.app.bean.POSBean;
+import cn.ahyxy.fastvisit.app.ui.OutletManageDetailActivity;
 import cn.ahyxy.fastvisit.base.BaseCallBackJsonArray;
 import cn.ahyxy.fastvisit.baseui.BaseFragment;
 import cn.ahyxy.fastvisit.baseui.SupportFragment;
@@ -69,6 +71,15 @@ public class OutletManageFragment extends BaseFragment implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        POSBean bean = resultAdapter.getItem(position);
+        Bundle bundle = new Bundle();
+        bundle.putString("cate_id", String.valueOf(bean.getCate_one()));
+        bundle.putString("t_id", String.valueOf(bean.getId()));
+        bundle.putString("t_name", bean.getT_name());
+        bundle.putString("t_address", bean.getT_address());
+        bundle.putString("cate_name", bean.getCate_name());
+        Intent intent = new Intent(getActivity(), OutletManageDetailActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
